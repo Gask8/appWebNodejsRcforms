@@ -1,0 +1,63 @@
+<%- include('partials/head')%>
+
+
+<div style="margin-top: -20px;" id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active hero-image" style="background-image: url('https://i.blogs.es/95d4c3/harina-trigo-tipos/1366_2000.jpg');">
+		<div class="hero-text" style="background-color: #2e0e2c96;">
+		<h1 style="font-size:50px">Harinapp</h1>
+		<h3>Calidad y Servicio</h3>
+	  </div>
+	</div>
+
+    <div class="item hero-image" style="background-image: url('https://www.cocinayvino.com/wp-content/uploads/2017/04/61039749_l.jpg');">
+		<div class="hero-text" style="background-color: #cf73c996;">
+		<h1 style="font-size:50px">Desarollo de Software</h1>
+		<h3>25/11/2021</h3>
+	  </div>
+	</div>
+
+    <div class="item hero-image" style="background-image: url('https://lossaboresdemexico.com/wp-content/uploads/2020/04/shutterstock_295248206-1.jpg');">
+		<div class="hero-text" style="background-color: #49b3c196;">
+		<h1 style="font-size:50px">Gabriel<br>Paul<br>Nancy</h1>
+		<h3>Equipo 1</h3>
+	  </div>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+		<div class="container">
+			
+			<% if(wrong && wrong.length) {%>
+			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=wrong%></div>
+			<%}%>
+			
+			<div class="jumbotron" style="margin-top: 50px">
+			  <h1 style="font-weight: 700; color: #ff79e8; text-shadow: 2px 2px #000000;">Harinnap es una compañía <br>que si le importa la calidad</h1>
+			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat ante quis nunc hendrerit, eget porttitor eros volutpat. Nullam rhoncus erat mi. Praesent porttitor nisi ac magna feugiat suscipit. Vestibulum pretium vitae est ac tempus. Donec iaculis vulputate tellus id tristique. In auctor dolor nec nulla suscipit, sit amet pretium dolor sagittis. Etiam ut scelerisque ante. Cras id fermentum urna.</p>
+			  <p><a class="btn btn-primary btn-lg" href="/#" role="button">Ingresa al Sistema</a></p>
+			</div>
+			
+			
+		</div>
+		
+	</body>
+<%- include('partials/footer')%>
