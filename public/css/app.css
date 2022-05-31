@@ -1,5 +1,10 @@
 body {
-	background: beige !important;
+	background: #970202 !important;
+}
+
+#crform{
+	background: #EEEEEE; 
+	padding: 50px 50px;
 }
 
 #butif{
@@ -15,7 +20,7 @@ body {
 }
 
 #nuevo{
-	background: #9494ffd4;
+	background: #adc2ffd4;
     border: 5px solid black;
     border-radius: 20px;
     padding: 20px 5%;
@@ -58,7 +63,7 @@ form .input-field:first-child {
 }
 
 #nuevo form button {
-    background: linear-gradient(to left, #3470ff, #a876f7);
+    background: linear-gradient(to left, #3470ff, #7a25ff);
     color: white;
     border-radius: 4px;
     margin-top: 2rem;
@@ -80,7 +85,6 @@ form .input-field:first-child {
   box-sizing: border-box;
 }
 
-
 #loginf form input{
   display: inline-block;
   border: 1px solid #ccc;
@@ -89,27 +93,6 @@ form .input-field:first-child {
   background-color: rgb(229 229 255);
   border-radius: 5px;
 }
-
-.hero-image {
-  background-color: #cccccc;
-  height: 450px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-.hero-text {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  padding: 10px 25px 25px;
-  border-radius: 10%;
-}
-
 
 .menuc{
 	display: flex;
@@ -154,4 +137,36 @@ display:inline-block;
 
 .btn-danger{
 	 width: 100px;
+}
+
+/* Formularios */
+.form-value{
+	text-align: center;
+	background: #F5F5F5;
+	border: 1px solid #ccc;
+}
+.form-th{
+	font-size: 0.9em;
+	font-weight: normal;
+	text-align: center;
+	border: 1px solid #ccc;
+	background: #ddd;
+}
+.label-preg{
+	color: #555;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+form hr{
+	width: 100%;
+	margin: 10px
+}
+form .hr-big{
+	margin: 30px
+}
+
+.disable{
+	cursor: not-allowed;
+	opacity: 0.5;
+	pointer-events: none;
 }

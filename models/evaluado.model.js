@@ -1,12 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/tanda4')
-	.then(()=>{
-	console.log("se logro");
-})
-	.catch(()=>{
-	console.log("ERROR");
-	console.log(err);
-});
+const conection = require("./db.js");
 
 const evaluadoSchema = new mongoose.Schema({
 	nombre: String,
@@ -22,6 +15,9 @@ const evaluadoSchema = new mongoose.Schema({
 			type: String,
 			default : null
 			
+		},
+		respuestas: {
+			type: [Number]
 		},
 		categoria: {
 			type: String,
@@ -39,8 +35,4 @@ const evaluadoSchema = new mongoose.Schema({
 });
 
 const Evaluado = mongoose.model('Evaluado', evaluadoSchema);
-const evaluados = Evaluado.find({});
-
-for(let e in evaluados.evaluadores){
-	console.log(e.nombre);
-}
+module.exports = Evaluado;

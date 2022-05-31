@@ -1,0 +1,125 @@
+<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="Proyecto de Desarollo">
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>RCForms</title>
+		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+		<link rel="stylesheet" href="/css/app.css">
+		<!-- 	Bootstrap	 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+		<div class="container" id="crform" style="margin: 50px auto; background: #ffffff">
+			<% if(del && del.length) {%>
+			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+			<%}%>
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+			
+			<center><img alt="RClogo" loading="lazy" class="form-image" style="border:0" src="/images/RC_Color_Horizontal.png" height="135px" width="618px"></center>
+			<hr>
+			<h2 class="text-center">Evaluación 360º para Coordinadores de Localidades</h2>
+			<div class="text-center">¡Venga tu Reino!</div>
+			<hr>
+			<hr>
+			<div>Estimado en Cristo, <%= data.nombre %>:</div><hr>
+			<div>Ha sido elegido por su Coordinador de Localidades para contestar la evaluación 360º que se está realizando desde la Oficina Territorial de Apostolado. En esta evaluación, usted podrá evaluar las habilidades que ha observado tiene el coordinador de su localidad.</div><hr>
+			<div>La fecha límite para contestar esta evaluación es el 20 de Mayo del presente año.</div><hr>
+			<div>Si tiene alguna duda puede comunicarse con Ana Paula Ariza (aariza@arcol.org). Su participación es muy importante para el crecimiento de su localidad, muchas gracias y Dios lo bendiga.</div><hr>
+			<hr>
+			<!-- <label for="first_8">Escribe aquí tu nombre<span class="form-required">*</span></label>
+			<input type="text" id="first_8" name="q8_escribeAqui[first]" size="10" value="" required>
+        	<label for="first_8" style="min-height:13px">Nombres</label>
+			<input type="text" id="last_8" name="q8_escribeAqui[last]" size="15" value="" required>
+            <label for="last_8" style="min-height:13px"> Apellidos </label>
+			<hr><hr> -->
+			<form action="/form/<%= data._id %>" method="post">
+			<center><label for="input_1">¿A qué localidad perteneces?<span>*</span></label>
+          <select id="input_1" name="localidad" style="width:150px" required>
+            <option value="">  </option>
+            <option value="Acapulco"> Acapulco </option>
+            <option value="Campeche"> Campeche </option>
+            <option value="Cancún"> Cancún </option>
+            <option value="CDMX Norte"> CDMX Norte </option>
+            <option value="CDMX Poniente"> CDMX Poniente </option>
+            <option value="CDMX Sur"> CDMX Sur </option>
+            <option value="Chetumal"> Chetumal </option>
+            <option value="Costa Rica"> Costa Rica </option>
+            <option value="Cotija"> Cotija </option>
+            <option value="Cuernavaca"> Cuernavaca </option>
+            <option value="El Salvador   "> El Salvador </option>
+            <option value="Guatemala"> Guatemala </option>
+            <option value="Lindavista"> Lindavista </option>
+            <option value="Mérida"> Mérida </option>
+            <option value="Morelia"> Morelia </option>
+            <option value="Oaxaca"> Oaxaca </option>
+            <option value="Pachuca"> Pachuca </option>
+            <option value="Prelatura Cozumel"> Prelatura Cozumel </option>
+            <option value="Prelatura Playa del Carmen"> Prelatura Playa del Carmen </option>
+            <option value="Puebla"> Puebla </option>
+            <option value="Querétaro"> Querétaro </option>
+            <option value="Tapachula "> Tapachula </option>
+            <option value="Toluca "> Toluca </option>
+            <option value="Tuxtla "> Tuxtla </option>
+            <option value="Veracruz"> Veracruz </option>
+            <option value="Xalapa"> Xalapa </option>
+            <option value="Córdoba"> Córdoba </option>
+            <option value="Orizaba"> Orizaba </option>
+            <option value="Villahermosa"> Villahermosa </option>
+          </select>
+			<label for="input_2">¿A qué sección perteneces?<span >*</span></label>
+          <select id="input_2" name="seccion" style="width:150px" required>
+            <option value="">  </option>
+            <option value="ECYD femenino "> ECYD femenino </option>
+            <option value="ECYD masculino "> ECYD masculino </option>
+            <option value="RC jóvenes femenino "> RC jóvenes femenino </option>
+            <option value="RC jóvenes masculino"> RC jóvenes masculino </option>
+            <option value="RC adultos femenino "> RC adultos femenino </option>
+            <option value="RC adultos masculino "> RC adultos masculino </option>
+            <option value="No aplica"> No aplica </option>
+          </select>
+			</center>
+			<hr><hr>
+		
+		  <!-- Comienza el Juego-->
+		<%for (let j = 0; j < quest.preg.length; j++) {%>
+        <label class="label-preg"> <%= quest.preg[j] %></label>
+          <table cellpadding="4" cellspacing="0" >
+            <tbody><tr>
+				
+              <th style="border:none">&nbsp;</th>
+				<%for (let element of quest.label) {%>
+					<th class="form-th">
+						<label> <%= element %> </label>
+					</th>
+				<%}%>
+				
+            </tr>
+			<%for (let i = 0; i < data.evaluando.length; i++) {%>
+            <tr>
+              <th class="form-th">
+                <label> <%= data.evaluando[i].nombre %></label>
+              </th>
+				
+				<%for (let element of quest.val) {%>
+					<td class="form-value">
+						<input type="radio" class="form-radio" name="arr[<%=i%>][<%=j%>]" value="<%= element %>" required>
+				  	</td>
+				<%}%>
+				
+              
+            </tr>
+				<%}%>
+          </tbody></table>
+			<hr class="hr-big">
+			<%}%>
+				<center><button class="btn btn-primary" style="width: 25%">Enviar</button></center>
+			</form>
+				
+		</div>
+	</body>
+<%- include('../partials/footer')%>	

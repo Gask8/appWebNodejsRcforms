@@ -1,0 +1,107 @@
+<%- include('../partials/head')%>
+	
+		<div class="container" id="crform">
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluados/">Regresar</a>
+		<h1>Evaluado: <%= data.nombre%></h1>
+			
+			<!-- <button id="butif" class="btn btn-primary">Modificar</button>
+		  <br> -->
+		 
+			
+			<table id="tabif" class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Posicion</th>
+				<th>Correo</th>
+			</tr>
+			</thead>
+			  <h3>Informacion Basica:</h3>
+				<tbody id="myTable">
+				<tr>
+					<td><%= data._id %></td>
+					<td><%= data.nombre %></td>
+					<td><%= data.posicion %></td>
+					<td><%= data.correo %></td>	
+				</tr>
+			</tbody>
+		  </table>
+			
+		  <table id="tabif" class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				  <th>Nombre</th>
+				  <th>Posicion</th>
+				  <th>Categoria</th>
+				  <th>Correo</th>
+				  <th>Contesto?</th>
+				   </tr>
+			</thead>
+			
+		  <h2>Evaluadores</h2>
+		  <p>Buscar por ID o mas cosas:</p>  
+		  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+		  <br>
+			<tbody id="myTable2">
+					<%for (let element of data.evaluadores) {%>
+					<tr>
+						<td><%= element.nombre %></td>
+						<td><%= element.posicion %></td>
+						<td><%= element.categoria %></td>
+						<td><%= element.correo %></td>
+						<td class="text-center"><%if(element.contesto){%>Si <span style="color:#2ac32a;" class="glyphicon glyphicon-ok"></span><% } else { %>No <span style="color:#ff6161;" class="glyphicon glyphicon-remove"></span><%}%></td>
+					</tr>
+					<%}%>
+			</tbody>
+		  </table>
+			
+		<form id="delif" method="POST" action="/evaluados/<%=data._id%>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
+			<button class="btn btn-danger">Borrar</button>
+		</form>
+	
+	<script>
+	$(document).ready(function(){
+	  $("#myInput").on("keyup", function() {
+		var value = $(this).val().toLowerCase();
+		$("#myTable2 tr").filter(function() {
+		  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	  });
+	});
+	</script>
+				
+
+<script>
+	// var x = document.querySelectorAll(".modif");
+	// var z = document.querySelectorAll("#tabif");
+	// var w = document.querySelectorAll("#delif");
+	// var y = document.querySelectorAll("#butif");
+	
+	// function mostrar() {
+	// 	if(x[0].style.display == "none"){
+	// 		but=false;
+	// 	} else {
+	// 		but=true;
+	// 	}
+	// 	if(but){
+	// 		x[0].style.display = "none";
+	// 		z[0].style.display="table";
+	// 		w[0].style.display="flex";
+	// 		y[0].innerText="Modificar";
+	// 	} else {
+	// 		x[0].style.display="inherit";
+	// 		w[0].style.display = "none";
+	// 		z[0].style.display = "none";
+	// 		y[0].innerText="Cancelar";
+	// 	}
+	// }
+	
+	// y[0].addEventListener("click", mostrar);
+</script>
+
+	</body>
+<%- include('../partials/footer')%>	

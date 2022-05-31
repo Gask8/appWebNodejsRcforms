@@ -1,0 +1,69 @@
+<%- include('../partials/head')%>
+
+		<div class="container" id="crform">
+			<% if(del && del.length) {%>
+			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+			<%}%>
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+			
+			<form method="POST" action="/evaluadores/cruz">
+				<button class="btn btn-primary btn-lg">Cruzar</button>
+			</form>
+				<a href="/evaluadores/list" class="btn btn-info btn-lg" style="width:100%">Lista de Forms</a>
+			
+		  <h2>Evaluadores</h2>
+		  <p>Buscar por ID o mas cosas: </p>  
+		  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+		  <br>
+			
+		  <table class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<!-- <th>ID</th> -->
+				<th>Nombre</th>
+				<th>Evaluando a</th>
+				<th>#</th>
+				<th>Contesto?</th>
+				<th>Form</th>
+				<th>Ver</th>
+			  </tr>
+			</thead>
+			<tbody id="myTable">
+				<%for (let element of data) {%>
+					<tr>
+						<td><%= element.nombre %></td>
+						<%var text = ""; for (let eva of element.evaluando) {
+							text+=eva.nombre+", ";
+						}%>
+						<td><%= text %></td>
+						<td><%= element.evaluando.length %></td>
+						<td class="text-center"><%if(element.contesto){%>Si <span style="color:#2ac32a;" class="glyphicon glyphicon-ok"></span><% } else { %>No <span style="color:#ff6161;" class="glyphicon glyphicon-remove"></span><%}%></td>
+						<td><a href="/form/<%= element._id %>" class="btn btn-info">Form</a></td>
+						<td><a href="/evaluadores/<%= element._id %>" class="btn btn-primary <%if(!element.contesto){%><%="disable"%><%}%>">Info</a></td>
+					</tr>
+				<%}%>
+			</tbody>
+		  </table>
+	
+			<form method="POST" action="/evaluadores?_method=DELETE" onsubmit="return confirm('En serio quieres borrar todo?');">
+				<button class="btn btn-danger long">Borrar Todo</button>
+			</form>
+			
+			<div style="height: 25px;"></div>
+		</div>
+
+		<script>
+		$(document).ready(function(){
+		  $("#myInput").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#myTable tr").filter(function() {
+			  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		  });
+		});
+		</script>
+
+	</body>
+<%- include('../partials/footer')%>	

@@ -1,0 +1,52 @@
+<%- include('../partials/head')%>
+
+		<div class="container" id="crform">
+			<% if(del && del.length) {%>
+			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+			<%}%>
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+			
+			<a href="/evaluadores" class="btn btn-info btn-lg" style="width:100%">Regreso</a>
+			
+		  <h2>Evaluadores Forms</h2>
+		  <p>Buscar por ID o mas cosas: </p>  
+		  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+		  <br>
+			
+		  <table class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Form</th>
+				<th>Ver</th>
+			  </tr>
+			</thead>
+			<tbody id="myTable">
+				<%for (let element of data) {%>
+					<tr>
+						<td><%= element.nombre %></td>
+						<td><a href="https://rcforms.run-us-west2.goorm.io/form/<%= element._id %>">https://rcforms.run-us-west2.goorm.io/form/<%= element._id %></a></td>
+						<td><a href="/form/<%= element._id %>" class="btn btn-info">Form</a></td>
+					</tr>
+				<%}%>
+			</tbody>
+		  </table>
+			
+			<div style="height: 25px;"></div>
+		</div>
+
+		<script>
+		$(document).ready(function(){
+		  $("#myInput").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#myTable tr").filter(function() {
+			  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		  });
+		});
+		</script>
+
+	</body>
+<%- include('../partials/footer')%>	

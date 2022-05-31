@@ -1,0 +1,59 @@
+<%- include('../partials/head')%>
+
+		<div class="container" id="crform">
+			<% if(del && del.length) {%>
+			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+			<%}%>
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+	
+		  <a href="/evaluados/new" class="btn btn-primary">Agregar Evaluado</a>
+		  <h2>Evaluadores</h2>
+		  <p>Buscar por ID o mas cosas: </p>  
+		  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+		  <br>
+			
+		  <table class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Posicion</th>
+				<th>Correo</th>
+				<th>Mas info</th>
+			  </tr>
+			</thead>
+			<tbody id="myTable">
+				<%for (let element of evaluados) {%>
+					<tr>
+						<td><%= element._id %></td>
+						<td><%= element.nombre %></td>
+						<td><%= element.posicion %></td>
+						<td><%= element.correo %></td>
+						<td><a href="/evaluados/<%= element._id %>" class="btn btn-info">Ver Info</a></td>
+					</tr>
+				<%}%>
+			</tbody>
+		  </table>
+	
+			<!-- <form method="POST" action="/evaluado?_method=DELETE" onsubmit="return confirm('En serio quieres borrar todo?');">
+				<button class="btn btn-danger long">Borrar Todo</button>
+			</form> -->
+			
+			<div style="height: 25px;"></div>
+		</div>
+
+		<script>
+		$(document).ready(function(){
+		  $("#myInput").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#myTable tr").filter(function() {
+			  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		  });
+		});
+		</script>
+
+	</body>
+<%- include('../partials/footer')%>	

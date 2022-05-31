@@ -7,10 +7,6 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const flash = require('connect-flash');
 
-
-const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/dogsDB", {useNewUrlParser: true});
-
 //Especificaciones
 app.use(express.static('public'))
 app.set('view engine','ejs');
@@ -39,13 +35,7 @@ app.get('/',(req,res)=>{var vsession = req.session;res.render('index', { vsessio
 
 //add the router
 app.use('/', router);
-// require("./routes/cliente.routes.js")(app);
-// require("./routes/customer.routes.js")(app);
-// require("./routes/equipo.routes.js")(app);
-// require("./routes/lote.routes.js")(app);
-// require("./routes/analisis.routes.js")(app);
-// require("./routes/log.routes.js")(app);
-// require("./routes/user.routes.js")(app);
-// require("./routes/certificado.routes.js")(app);
+require("./routes/evaluado.routes.js")(app);
+require("./routes/evaluadores.routes.js")(app);
 app.listen(process.env.port || 3000);
 console.log('Running at Port 3000');
