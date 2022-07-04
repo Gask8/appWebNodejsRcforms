@@ -5,6 +5,12 @@ const evaluadorSchema = new mongoose.Schema({
 	nombre: String,
 	localidad: String,
 	seccion: String,
+	quienlleno: String,
+	correo: String,
+	semando: {
+		type: Boolean,
+		default: false
+	},
 	evaluando: [{
 		nombre: {
 			type: String,

@@ -170,3 +170,9 @@ form .hr-big{
 	opacity: 0.5;
 	pointer-events: none;
 }
+
+.thheader{
+	background: #a6deff;
+    font-weight: bold;
+    font-size: 1.2em;
+}

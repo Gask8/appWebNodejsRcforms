@@ -11,6 +11,12 @@ const preguntaSchema = new mongoose.Schema({
 	},
 	val: {
 		type: [Number]
+	},
+	categoria: {
+		type: [String]
+	},
+	cati: {
+		type: [Number]
 	}
 });
 

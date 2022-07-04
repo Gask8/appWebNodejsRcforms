@@ -26,16 +26,13 @@ app.use((req,res,next)=>{
 })
 // Paths
 app.get('/',(req,res)=>{var vsession = req.session;res.render('index', { vsession })})
-// app.get('/menu',(req,res)=>{var vsession = req.session;res.render('menu', { vsession })})
-// const User = require("./controllers/user.controller.js");
-// app.post('/sign',User.findOne);
-// app.get('/info',(req,res)=>{res.send('Info:' + req.session.isAdmin)})
-// app.get('/logout',(req,res) => {req.session.destroy();res.redirect('/');});
-
-
 //add the router
 app.use('/', router);
+require("./routes/sign.routes.js")(app);
 require("./routes/evaluado.routes.js")(app);
 require("./routes/evaluadores.routes.js")(app);
+require("./routes/otros.routes.js")(app);
+require("./routes/correos.routes.js")(app);
+
 app.listen(process.env.port || 3000);
 console.log('Running at Port 3000');

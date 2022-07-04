@@ -9,7 +9,6 @@ const dbConfig = require("../config/db.config.js");
 //   password: dbConfig.PASSWORD,
 //   database: dbConfig.DB
 // });
-
 // open the MySQL connection
 // connection.connect(error => {
 //   if (error) throw error;

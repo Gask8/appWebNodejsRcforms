@@ -7,41 +7,47 @@
 			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluadores/">Regresar</a>
 		<h1>Evaluador: <%= data.nombre %></h1>
 		 
-			<table id="tabif" class="table table-bordered table-striped">
+		<table id="tabif" class="table table-bordered table-striped">
 			<thead>
 			  <tr>
-				<th>ID</th>
 				<th>Nombre</th>
+				<th>Correo</th>
 				<th>Localidad</th>
 				<th>Seccion</th>
+				  <th>Quien?</th>
 			</tr>
 			</thead>
 			  <h3>Informacion Basica:</h3>
 				<tbody id="myTable">
 				<tr>
-					<td><%= data._id %></td>
 					<td><%= data.nombre %></td>
+					<td><%= data.correo %></td>
 					<td><%= data.localidad %></td>
-					<td><%= data.seccion %></td>	
+					<td><%= data.seccion %></td>
+					<td><%= data.quienlleno %></td>	
 				</tr>
 			</tbody>
 		  </table>
 			
-			
-		  <h2>Evaluadores</h2>
-		  <br>
-          <table>
-            <tbody><tr>
-				
+		  <%let idx=0;%>
+		  <h2>Evaluados</h2>
+			<p>Fecha de respuesta: <%=data.lastdate.toLocaleString('es-MX', { timeZone: 'America/Mexico_City'})%></p>
+          <table class="table">
+            <tbody>
+				<tr>
               <th style="border:none">&nbsp;</th>
 				<%for (let element of data.evaluando) {%>
 					<th class="form-th">
 						<label> <%= element.nombre %> </label>
 					</th>
 				<%}%>
-				
             </tr>
 			<%for (let i = 0; i < quest.preg.length; i++) {%>
+			<%if(i === quest.cati[idx]) {%>
+				<tr>
+				  <th colspan="<%=data.evaluando.length+1%>" class="thheader form-th"><%= quest.categoria[idx]%></th>
+				</tr>
+			<%idx++;}%>
             <tr>
               <th class="form-th">
                 <label> <%= quest.preg[i] %></label>
@@ -54,9 +60,8 @@
             </tr>
 				<%}%>
           </tbody></table>
-			<p class="text-right">Fecha de respuesta: <%=data.lastdate.toLocaleString('es-MX', { timeZone: 'America/Mexico_City'})%></p>
 			
-		<form id="delif" method="POST" action="/evaluadores/<%=data._id%>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
+		<form style="align-items: flex-end;" id="delif" method="POST" action="/evaluadores/<%=data._id%>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
 			<button class="btn btn-danger">Borrar</button>
 		</form>
 
