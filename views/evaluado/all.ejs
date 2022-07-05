@@ -44,16 +44,6 @@
 			<div style="height: 25px;"></div>
 		</div>
 
-		<script>
-		$(document).ready(function(){
-		  $("#myInput").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#myTable tr").filter(function() {
-			  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-			});
-		  });
-		});
-		</script>
-
+		<script src="/js/general.js"></script>
 	</body>
 <%- include('../partials/footer')%>	

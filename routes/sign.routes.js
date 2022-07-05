@@ -1,7 +1,6 @@
 module.exports = app => {
 	
 	const User = require("../models/user.model.js");
-	const Evaluadore = require("../models/evaluadores.model.js");
 	const express = require('express');
 	const router = express.Router();
 	app.use('/', router);
@@ -9,8 +8,6 @@ module.exports = app => {
   router.post('/sign', async(req,res)=>{
 	  const data = await User.findOne({user:req.body.user});
 	  if(data){
-		  console.log(data.password);
-		  console.log(req.body.password);
 		  if(data.password==req.body.password){
 			  req.session.user = data.user;
 			  req.flash('succes','Usuario Correcto');

@@ -1,9 +1,9 @@
 module.exports = app => {
-	
+	const mw = require("./middelware.js");
 	const Evaluadore = require("../models/evaluadores.model.js");
 	const express = require('express');
 	const router = express.Router();
-	app.use('/evaluadores', router);
+	app.use('/evaluadores', mw.isLogIn, router);
 	
 	
 	// Retrieve all

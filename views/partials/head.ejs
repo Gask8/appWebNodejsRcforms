@@ -7,6 +7,7 @@
 		<title>RCForms</title>
 		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 		<link rel="stylesheet" href="/css/app.css">
+		<script src="/css/app.css"></script>
 		<!-- 	Bootstrap	 -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -24,11 +25,10 @@
 			  <a class="navbar-brand" href="/">SomosRC - Forms</a>
 			</div>
 			<ul class="nav navbar-nav">
+				<%if (vsession.user!=undefined){%>
 			  <li><a href="/evaluados">Evaluados</a></li>
 			  <li><a href="/evaluadores">Evaluadores</a></li>
 			  <li><a href="/preguntas">Preguntas</a></li>
-				<%if (vsession.user!=undefined){%>
-				<li class="active"><a href="/menu">Menu</a></li>
 				<%}%>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
