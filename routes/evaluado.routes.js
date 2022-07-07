@@ -5,49 +5,56 @@ module.exports = app => {
 	const router = express.Router();
 	app.use('/evaluados', mw.isLogIn, router);
 	
-	//new
-  router.get('/new', (req,res)=>{
-	  var vsession = req.session;
-	  res.render('evaluado/new',{vsession})
+	
+	// ALL Get
+  router.get("/:idt", async(req, res)=>{
+	  const idt = req.params.idt;
+	  const evaluados = await Evaluado.find({idt:idt});
+	  const vsession = req.session;
+	  res.render('evaluado/all',{ idt, evaluados, vsession })
   });
 	
-// Create new
-  router.post("/", async(req, res)=>{
+	//New Get
+  router.get('/:idt/new', (req,res)=>{
+	  const idt = req.params.idt;
+	  var vsession = req.session;
+	  res.render('evaluado/new',{idt, vsession})
+  });
+	
+	// New Post
+  router.post("/:idt", async(req, res)=>{
 	  const data = req.body;
+	  const idt = req.params.idt;
 	  var evaluado;
 	  var x = data.evaluadores.split('\r\n');
 	  for (let i = 0; i < x.length; i++) {
 		  let y = x[i].split(',');
 		  let obj = {nombre:y[0],posicion:y[2],categoria:y[1],correo:y[3]}
 		  if(i==0){
-			  evaluado = new Evaluado({ nombre:y[0],posicion:y[2],categoria:y[1],correo:y[3] });
+			  evaluado = new Evaluado({ nombre:y[0],posicion:y[2],categoria:y[1],correo:y[3],idt:idt });
 		  }
 		  evaluado.evaluadores.push(obj);
 		}
 	  evaluado.save();
+	  
 	  req.flash('succes','El evaluado se ha agregado');
-	  res.redirect('/evaluados')
+	  res.redirect('/evaluados/'+idt);
   });
 	
-  // Retrieve all
-  router.get("/", async(req, res)=>{
-	  const evaluados = await Evaluado.find({})
-	  const vsession = req.session;
-	  res.render('evaluado/all',{ evaluados, vsession })
-  });
-	
-	// Retrieve a single Person with Id
-  router.get("/:evaluadoId", async(req, res)=>{
+	// ById Get
+  router.get("/:idt/:evaluadoId", async(req, res)=>{
+	  const idt = req.params.idt;
 	  const data = await Evaluado.findOne({_id:req.params.evaluadoId});
 	  const vsession = req.session;
-	  res.render('evaluado/byId',{ data, vsession })
+	  res.render('evaluado/byId',{ idt, data, vsession })
   });
 	
-	// Delete a Customer with customerId
-  router.delete("/:evaluadoId", async(req, res)=>{
+	// ById Delete
+  router.delete("/:idt/:evaluadoId", async(req, res)=>{
+	  const idt = req.params.idt;
 	  await Evaluado.findByIdAndDelete(req.params.evaluadoId);
 	  req.flash('del','El Evaluado se ha borrado');
-	  res.redirect('/evaluados')
+	  res.redirect('/evaluados/'+idt)
   });
 	
 	

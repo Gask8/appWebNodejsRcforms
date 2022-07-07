@@ -31,8 +31,9 @@ app.use('/', router);
 require("./routes/sign.routes.js")(app);
 require("./routes/evaluado.routes.js")(app);
 require("./routes/evaluadores.routes.js")(app);
-require("./routes/otros.routes.js")(app);
+require("./routes/tanda.routes.js")(app);
 require("./routes/correos.routes.js")(app);
+require("./routes/form.routes.js")(app);
 
 app.listen(process.env.port || 3000);
 console.log('Running at Port 3000');

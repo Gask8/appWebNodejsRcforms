@@ -10,7 +10,7 @@
 			<%}%>
 			
 			<div class="activesld nonact">
-			<center><img alt="RClogo" loading="lazy" class="form-image" style="border:0" src="/images/RC_Color_Horizontal.png" height="135px" width="618px"></center>
+			<center><img id="mob-img" alt="RClogo" loading="lazy" class="form-image" style="border:0" src="/images/RC_Color_Horizontal.png" height="135px" width="618px"></center>
 			<hr>
 			<h2 class="text-center">Evaluación 360º para Coordinadores de Localidades</h2>
 			<div class="text-center">¡Venga tu Reino!</div>
@@ -86,6 +86,7 @@
 		<%for (let j = 0; j < quest.preg.length; j++) {%>
 			<% if(j%25==0) {%><div class="nonact"> <% } %>
         <label class="label-preg"> <%= quest.preg[j] %></label>
+		  <div style="overflow-x:auto;">
           <table cellpadding="4" cellspacing="0" >
             <tbody><tr>
 				
@@ -112,7 +113,7 @@
               
             </tr>
 				<%}%>
-          </tbody></table>
+			  </tbody></table></div>
 			<hr class="hr-big">
 				<% if(j%25==24) {%></div> <% } %>
 			<%}%>
@@ -120,7 +121,7 @@
 				<div class="nonact">
 					<hr class="hr-big">
 					<center><h3>¡Muchas Gracias!</h3></center>
-					<center><h3>De Enviar para terminar el formulario</h3></center>
+					<center><h3>Pulse Enviar para terminar el formulario</h3></center>
 					<hr class="hr-big">
 					<center><button class="btn btn-primary" style="width: 25%">Enviar</button></center>
 					<hr class="hr-big">
@@ -132,6 +133,9 @@
 		</div>
 	</body>
 <style>
+	.form-th{
+	font-size: inherit !important;
+	}
 	.activesld{
 		display: block !important;
 	}
@@ -153,6 +157,17 @@
 	.botombtn .btn:hover, .botombt .btn-primary:hover{
 		background-color: #ebebeb;
 		transition: all 0.5s;
+	}
+	
+	@media only screen and (max-width: 600px) {
+		#mob-img {
+			width: 200px;
+			height: 45px;
+		}
+	
+		.botombtn .btn, .botombt .btn-primary{
+			width: 45%;
+		}
 	}
 </style>
 <script>

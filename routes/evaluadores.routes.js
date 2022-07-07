@@ -6,55 +6,60 @@ module.exports = app => {
 	app.use('/evaluadores', mw.isLogIn, router);
 	
 	
-	// Retrieve all
-  router.get("/", async(req, res)=>{
-	  const data = await Evaluadore.find({})
+	// ALL Get
+  router.get("/:idt", async(req, res)=>{
+	  const idt = req.params.idt;
+	  const data = await Evaluadore.find({idt:idt})
 	  const vsession = req.session;
-	  res.render('evaluador/all',{ data, vsession })
+	  res.render('evaluador/all',{ idt, data, vsession })
   });
 	
-	// Retrieve list of forms
-  router.get("/list", async(req, res)=>{
-	  const data = await Evaluadore.find({})
+	// All List Get
+  router.get("/:idt/list", async(req, res)=>{
+	  const idt = req.params.idt;
+	  const data = await Evaluadore.find({idt:idt})
 	  const vsession = req.session;
-	  res.render('evaluador/lista',{ data, vsession })
+	  res.render('evaluador/lista',{ idt, data, vsession })
   });
 	
-	// Retrieve a single Person with Id
-  router.get("/:evaluadorId", async(req, res)=>{
-	  const Pregunta = require("../models/preguntas.model.js");
-	  const data = await Evaluadore.findOne({_id:req.params.evaluadorId});
-	  const quest = await Pregunta.findOne({});
-	  const vsession = req.session;
-	  res.render('evaluador/byId',{ data, quest, vsession })
-  });
-	
-	// Create
-  router.post("/cruz", async(req, res)=>{
+	// New Cruz Post
+  router.post("/:idt/cruz", async(req, res)=>{
 	  const Evaluado = require("../models/evaluado.model.js");
-	  const data = await Evaluado.find({});
+	  const idt = req.params.idt;
+	  const data = await Evaluado.find({idt:idt});
 	  for (let elemento of data) {
 		  for (let e of elemento.evaluadores) {
-			  const data2 = await Evaluadore.findOne({nombre:e.nombre});
+			  const data2 = await Evaluadore.findOne({nombre:e.nombre,idt:idt});
 			  if(data2){
 				  data2.evaluando.push({nombre:elemento.nombre, correo:elemento.correo});
 				  data2.save();
 			  } else {
-				  const evaluador = new Evaluadore({ nombre:e.nombre, correo:e.correo });
+				  const evaluador = new Evaluadore({ nombre:e.nombre, correo:e.correo,idt:idt});
 				  evaluador.evaluando.push({nombre:elemento.nombre});
 				  evaluador.save();
 			  }
 		  }
 	  }
 	  req.flash('succes','Se han cruzado los evaluadores');
-	  res.redirect('/evaluadores')
+	  res.redirect('/evaluadores/'+idt)
+  });
+	
+	// ById Get
+  router.get("/:idt/:evaluadorId", async(req, res)=>{
+	  const Pregunta = require("../models/preguntas.model.js");
+	  const idt = req.params.idt;
+	  const data = await Evaluadore.findOne({_id:req.params.evaluadorId});
+	  const quest = await Pregunta.findOne({idt:idt});
+	  const vsession = req.session;
+	  res.render('evaluador/byId',{ idt, data, quest, vsession })
   });
 	
 	// Delete All
-  router.delete("/", async(req, res)=>{
-	  await Evaluadore.deleteMany({})
+  router.delete("/:idt", async(req, res)=>{
+	  const idt = req.params.idt;
+	  await Evaluadore.deleteMany({idt:idt})
 	  req.flash('del','Todo se ha borrado');
-	  res.redirect('/evaluadores')
+	  res.redirect('/evaluadores/'+idt)
   })
 	
 };

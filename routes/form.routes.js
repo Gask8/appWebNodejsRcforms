@@ -11,9 +11,9 @@ module.exports = app => {
 	// FORM with Id
   router.get("/form/:evaluadorId", mw.hasAnswered, async(req, res)=>{
 	  const data = await Evaluadore.findOne({_id:req.params.evaluadorId});
-	  const quest = await Pregunta.findOne({});
+	  const quest = await Pregunta.findOne({idt:data.idt});
 	  const vsession = req.session;
-	  res.render('otros/form',{ data, quest, vsession })
+	  res.render('form/form',{ data, quest, vsession })
   });
 	
 	// POST FORM
@@ -28,7 +28,7 @@ module.exports = app => {
 	  const evaluador = await Evaluadore.findOne({_id:id});
 	  for(let i=0;i<req.body.arr.length;i++){
 		  evaluador.evaluando[i].respuestas = req.body.arr[i];
-		  const evaluado = await Evaluado.findOne({nombre:evaluador.evaluando[i].nombre});
+		  const evaluado = await Evaluado.findOne({nombre:evaluador.evaluando[i].nombre,idt:evaluador.idt});
 		  if(evaluado){
 			await Evaluado.findOneAndUpdate(
 				{ _id: evaluado._id, "evaluadores.nombre": evaluador.nombre },
@@ -45,39 +45,11 @@ module.exports = app => {
 	  res.redirect('/gracias')
   });
 	
-	//Gracias Render
+	//Gracias Get
 	router.get("/gracias", async(req, res)=>{
 	  const vsession = req.session;
-	  res.render('otros/gracias',{ vsession })
+	  res.render('form/gracias',{ vsession })
   });
-	
-	
-	//PREGUNTAS AND ALTER
-  router.get('/preguntas', mw.isLogIn, async (req,res)=>{
-	  const data = await Pregunta.findOne({});
-	  var vsession = req.session;
-	  res.render('otros/preguntas',{data, vsession})
-  });
-	
-  router.post("/preguntas", mw.isLogIn, async(req, res)=>{
-		const data = req.body;
-		var x = data.preg.split('\r\n');
-		// var y = data.label.split('\r\n');
-		// var z = data.val.split('\r\n');
-		// var v = data.cat.split('\r\n');
-		// var w = data.cati.split('\r\n');
-	  
-		Pregunta.findOneAndUpdate({},{"preg": x}, function(err, result){
-			if(err){
-				res.send(err);
-		}});
-		// Pregunta.findOneAndUpdate({},{"preg": x, "val": z, "label": y, "categoria": v, "cati": w}, function(err, result){
-		// 	if(err){
-		// 		res.send(err);
-		// }});
 
-		req.flash('succes','Las preguntas se han actualizado');
-		res.redirect('/preguntas')
-  });
 	
 };

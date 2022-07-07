@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const conection = require("./db.js");
 
 const preguntaSchema = new mongoose.Schema({
-	tanda: Number,
+	name: String,
+	idt: Number,
 	preg: {
 		type: [String]
 	},

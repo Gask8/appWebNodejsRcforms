@@ -8,7 +8,7 @@
 			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
 			<%}%>
 			
-			<a href="/evaluadores/list" class="btn btn-info btn-lg" style="width:100%">Lista de Forms</a>
+			<a href="/evaluadores/<%= idt %>/list" class="btn btn-info btn-lg" style="width:100%">Lista de Forms</a>
 			
 		  <h2>Evaluadores</h2>
 		  <p>Buscar por ID o mas cosas: </p>  
@@ -39,16 +39,16 @@
 						<td><%= element.evaluando.length %></td>
 						<td class="text-center"><%if(element.contesto){%>Si <span style="color:#2ac32a;" class="glyphicon glyphicon-ok"></span><% } else { %>No <span style="color:#ff6161;" class="glyphicon glyphicon-remove"></span><%}%></td>
 						<td><a href="/form/<%= element._id %>" class="btn btn-info">Form</a></td>
-						<td><a href="/evaluadores/<%= element._id %>" class="btn btn-primary <%if(!element.contesto){%>disable<%}%>">Info</a></td>
+						<td><a href="/evaluadores/<%= idt %>/<%= element._id %>" class="btn btn-primary <%if(!element.contesto){%>disable<%}%>">Info</a></td>
 					</tr>
 				<%j++;}%>
 			</tbody>
 		  </table>
 	
-			<form style="align-items: flex-end;" method="POST" action="/evaluadores?_method=DELETE" onsubmit="return confirm('En serio quieres borrar todo?');">
+			<form style="align-items: flex-end;" method="POST" action="/evaluadores/<%= idt %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar todo?');">
 				<button class="btn btn-danger long">Borrar Todo</button>
 			</form>
-			<form method="POST" action="/evaluadores/cruz">
+			<form method="POST" action="/evaluadores/<%= idt %>/cruz">
 				<button class="btn btn-primary btn-lg">Cruzar</button>
 			</form>
 			

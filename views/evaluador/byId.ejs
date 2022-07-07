@@ -4,7 +4,7 @@
 			<% if(succes && succes.length) {%>
 			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
 			<%}%>
-			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluadores/">Regresar</a>
+			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluadores/<%= idt %>">Regresar</a>
 		<h1>Evaluador: <%= data.nombre %></h1>
 		 
 		<table id="tabif" class="table table-bordered table-striped">
@@ -61,7 +61,7 @@
 				<%}%>
           </tbody></table>
 			
-		<form style="align-items: flex-end;" id="delif" method="POST" action="/evaluadores/<%=data._id%>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
+		<form style="align-items: flex-end;" id="delif" method="POST" action="/evaluadores/<%= idt %>/<%=data._id%>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
 			<button class="btn btn-danger">Borrar</button>
 		</form>
 

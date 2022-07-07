@@ -3,6 +3,7 @@ const conection = require("./db.js");
 
 const evaluadorSchema = new mongoose.Schema({
 	nombre: String,
+	idt: Number,
 	localidad: String,
 	seccion: String,
 	quienlleno: String,

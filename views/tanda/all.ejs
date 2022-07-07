@@ -8,8 +8,8 @@
 			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
 			<%}%>
 	
-		  <a href="/evaluados/<%= idt %>/new" class="btn btn-primary">Agregar Evaluado</a>
-		  <h2>Evaluadores</h2>
+		  <a href="/tandas/new" class="btn btn-primary">Agregar Tanda</a>
+		  <h2>Tandas</h2>
 		  <p>Buscar por ID o mas cosas: </p>  
 		  <input class="form-control" id="myInput" type="text" placeholder="Search..">
 		  <br>
@@ -18,28 +18,22 @@
 			<thead>
 			  <tr>
 				<th>ID</th>
-				<th>Nombre</th>
-				<th>Posicion</th>
-				<th>Correo</th>
+				<th>Tanda</th>
+				<th>Menu</th>
 				<th>Mas info</th>
 			  </tr>
 			</thead>
 			<tbody id="myTable">
-				<%for (let element of evaluados) {%>
+				<%for (let element of data) {%>
 					<tr>
-						<td><%= element._id %></td>
-						<td><%= element.nombre %></td>
-						<td><%= element.posicion %></td>
-						<td><%= element.correo %></td>
-						<td><a href="/evaluados/<%= idt+"/"+element._id %>" class="btn btn-info">Ver Info</a></td>
+						<td><%= element.idt %></td>
+						<td><%= element.name %></td>
+						<td><a href="/tandas/<%= element.idt %>" class="btn btn-primary">Menu</a></td>
+						<td><a href="/tandas/edit/<%= element._id %>" class="btn btn-info">Ver Info</a></td>
 					</tr>
 				<%}%>
 			</tbody>
 		  </table>
-	
-			<!-- <form method="POST" action="/evaluado?_method=DELETE" onsubmit="return confirm('En serio quieres borrar todo?');">
-				<button class="btn btn-danger long">Borrar Todo</button>
-			</form> -->
 			
 			<div style="height: 25px;"></div>
 		</div>

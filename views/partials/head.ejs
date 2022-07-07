@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="description" content="Proyecto de Desarollo">
@@ -7,7 +7,6 @@
 		<title>RCForms</title>
 		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 		<link rel="stylesheet" href="/css/app.css">
-		<script src="/css/app.css"></script>
 		<!-- 	Bootstrap	 -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -19,16 +18,34 @@
 		  <div class="container-fluid">
 			  
 			<div class="navbar-header">
-			 <img src="/images/logoRC.png" width="25" height="25" style="margin: 12px;">
+			 <img src="/images/logoRC.png" alt="Page Icon" width="25" height="25" style="margin: 12px;">
 			</div>
 			  <div class="navbar-header">
 			  <a class="navbar-brand" href="/">SomosRC - Forms</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<%if (vsession.user!=undefined){%>
-			  <li><a href="/evaluados">Evaluados</a></li>
-			  <li><a href="/evaluadores">Evaluadores</a></li>
-			  <li><a href="/preguntas">Preguntas</a></li>
+			  <li><a href="/tandas">Tandas</a></li>
+				
+				<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Tanda 1
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				  <li><a href="/evaluados/20">Evaluados</a></li>
+				  <li><a href="/evaluadores/20">Evaluadores</a></li>
+				  <li><a href="/tandas/20">Preguntas</a></li>
+				</ul>
+			  </li>
+				
+				<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Tanda 2
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				  <li><a href="/evaluados/22">Evaluados</a></li>
+				  <li><a href="/evaluadores/22">Evaluadores</a></li>
+				  <li><a href="/tandas/22">Preguntas</a></li>
+				</ul>
+			  </li>
 				<%}%>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

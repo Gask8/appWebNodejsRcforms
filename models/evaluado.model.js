@@ -4,6 +4,7 @@ const conection = require("./db.js");
 const evaluadoSchema = new mongoose.Schema({
 	nombre: String,
 	posicion: String,
+	idt: Number,
 	categoria: String,
 	correo: String,
 	evaluadores: [{

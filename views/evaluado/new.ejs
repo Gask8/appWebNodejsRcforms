@@ -1,34 +1,25 @@
 <%- include('../partials/head')%>
 		
-		<div class="container" id="crform">
-			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluados/">Regresar</a>
+	<div class="container" id="crform">
+			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluados/<%= idt %>">Regresar</a>
 			<h1>Agregar Evaluado</h1>
-<div id="nuevo">
-				<form action="/evaluados" method="post">
-          <!-- <div class="form-row">
-			<div class="form-col">
-               <label for="nombre">Nombre:</label>
-				<input id="nombre" name="nombre" type="TEXT"/>
+			
+		<div id="nuevo">
+			<form action="/evaluados/<%= idt %>" method="post">
+
+				<div class="form-row">
+					 <div class="form-col" style="width: 98%;">
+					<label for="evaluadores">Agregar Evaluacion (separar por reglones en formato nombre,categoria,posicion,contacto):</label>
+					<textarea id="evaluadores" name="evaluadores" rows="10" cols="50">Ejemplo:
+						Emilio Díaz,AUTOEVALUACIÓN ,Coordinador de localidades,ediaz-torre@legionaries.org
+						Diego Reynoso, Colega, Coordinador de localidades, dreynoso@arcol.org</textarea>
+					</div>
 				</div>
-            <div class="form-col">
-                <label for="correo">Correo:</label>
-				<input id="correo" name="correo" type="email"/>
-	         </div>
-			</div> -->
-					
-		<div class="form-row">
-			 <div class="form-col" style="width: 98%;">
-			<label for="evaluadores">Agregar Evaluacion (separar por reglones en formato nombre,categoria,posicion,contacto):</label>
-			<textarea id="evaluadores" name="evaluadores" rows="10" cols="50">Ejemplo:
-				Emilio Díaz,AUTOEVALUACIÓN ,Coordinador de localidades,ediaz-torre@legionaries.org
-				Diego Reynoso, Colega, Coordinador de localidades, dreynoso@arcol.org</textarea>
-	</div>
-</div>		
 					
                 <button>Enviar</button>
-         </form>
+         	</form>
 		</div>
-       </div>
+    </div>
 
 	</body>
 <%- include('../partials/footer')%>	
