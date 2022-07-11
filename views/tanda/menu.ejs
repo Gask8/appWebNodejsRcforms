@@ -22,6 +22,9 @@
 						<h2>Preguntas</h2>
 					</a>
 				</div>
+		<form style="align-items: flex-end; margin-top: 50px" id="delif" method="POST" action="/tandas/<%= idt %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
+			<button class="btn btn-danger">Borrar</button>
+		</form>
 			</div>
 			
 		</div>

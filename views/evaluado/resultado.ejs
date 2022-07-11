@@ -1,0 +1,117 @@
+<%- include('../partials/head')%>
+	
+		<div class="container" id="crform">
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluados/<%= idt %>/<%= data._id %>">Regresar</a>
+		<h1>Evaluado: <%= data.nombre%></h1>
+		 
+		<%function avg(arr,fw,tw) {
+				var sum = 0;
+				var cnt = 0;
+				for (var i = fw; i < tw; i++) {
+					sum += arr[i];
+					if(arr[i]!=null) cnt++;
+				}
+				return sum/cnt;
+			}%>
+			
+			<table id="tabif" class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Posicion</th>
+				<th>Correo</th>
+			</tr>
+			</thead>
+			  <h3>Informacion Basica:</h3>
+				<tbody id="myTable2">
+				<tr>
+					<td><%= data._id %></td>
+					<td><%= data.nombre %></td>
+					<td><%= data.posicion %></td>
+					<td><%= data.correo %></td>	
+				</tr>
+			</tbody>
+		  </table>
+			
+		
+		<%let idx=0;%>
+		<%let cont=0; for (let j = 0; j < data.evaluadores.length; j++) { if(data.evaluadores[j].contesto) cont++ }%>
+		<div style="overflow-x:auto;">
+		  <h2>Tabla de Informacion</h2>
+          <table class="table">
+            <tbody>
+				<tr>
+              <th style="border:none">&nbsp;</th>
+				<%for (let element of data.evaluadores) {%>
+					<%if(element.contesto){%>
+					<th class="form-th">
+						<label> <%= element.nombre %><br>(<%= element.categoria %>)</label>
+					</th>
+					<%}%>
+				<%}%>
+				<th class="form-th">
+					<label> AVG </label>
+				</th>
+            </tr>
+			<%let answ = []; for (let j = 0; j < cont; j++) {answ.push(new Array)}%>
+			<%for (let i = 0; i < quest.preg.length; i++) {%>
+				<%if(i === quest.cati[idx]) {%>
+					<tr>
+					  <th colspan="<%=cont+2%>" class="thheader form-th"><%= quest.categoria[idx]%></th>
+					</tr>
+				<%idx++;}%>
+				<tr>
+				  <th class="form-th">
+					<label> <%= quest.preg[i] %></label>
+				  </th>
+					<%let contr=cont,sumr=0,ic=0%>
+					<%for (let j = 0; j < data.evaluadores.length; j++) {%>
+						<%if(data.evaluadores[j].contesto){%>
+							
+							<% answ[ic][i]=data.evaluadores[j].respuestas[i]; ic++%>
+							
+							<td class="form-value">
+							<% if(data.evaluadores[j].respuestas[i]!=null) {%>
+								<p><%= data.evaluadores[j].respuestas[i] %></p>
+								<% sumr += data.evaluadores[j].respuestas[i];%>
+							<%}else{%>
+								<p>N/A</p>
+								<% contr --; %>
+							<%}%>
+							</td>
+						<%}%>
+					<%};%>
+					<td class="form-value <%if((sumr/contr)>94.5){%>alto<%}%> <%if((sumr/contr)<67.5){%> bajo<%}%>">
+						<p><%= (sumr/contr).toFixed(2); %></p>
+					</td>
+				</tr>
+				<%if(i+1 === quest.cati[idx]) {%>
+				<tr>
+					  <th class="form-th">AVG</th>
+				    <%for (let j = 0; j < cont; j++) {%>
+						<td class="form-th">
+							<p><%= avg(answ[j],quest.cati[idx-1],quest.cati[idx]).toFixed(2); %></p>
+						</td>
+					<%}%>
+					<td class="form-th"></td>
+				</tr>
+				<%}%>
+			<%}%>
+          </tbody></table>
+		</div>
+			
+		<style>
+			.bajo{
+				background: #ff828270;
+			}
+			.alto{
+				background: #9fff8770;
+			}
+		</style>
+		<script src="/js/general.js"></script>
+	</body>
+<%- include('../partials/footer')%>	

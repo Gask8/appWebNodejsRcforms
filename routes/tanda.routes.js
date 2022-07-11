@@ -32,6 +32,9 @@ module.exports = app => {
 				res.send(err);
 		}});
 	  
+	  req.session.itandas.push(data.idt);
+	  req.session.ntandas.push(data.name);
+	  
 	  req.flash('succes','La tanda se ha agregado');
 	  res.redirect('/tandas')
   });
@@ -65,18 +68,33 @@ module.exports = app => {
 	
 	// ById Menu Get
   router.get("/:tandaId", async(req, res)=>{
+	  const idt = req.params.tandaId;
 	  const data = await Pregunta.findOne({idt:req.params.tandaId});
 	  const vsession = req.session;
-	  res.render('tanda/menu',{ data, vsession })
+	  res.render('tanda/menu',{ idt , data, vsession })
   });
 	
 
-	// Delete a Customer with customerId
-  // router.delete("/:evaluadoId", async(req, res)=>{
-  // await Evaluado.findByIdAndDelete(req.params.evaluadoId);
-  // req.flash('del','El Evaluado se ha borrado');
-  // res.redirect('/evaluados')
-  // });
+	// ById Delete
+   router.delete("/:tandaId", async(req, res)=>{
+	   const Evaluado = require("../models/evaluado.model.js");
+	   const Evaluadore = require("../models/evaluadores.model.js");
+	   
+	   await Evaluadore.deleteMany({idt:req.params.tandaId});
+	   await Evaluado.deleteMany({idt:req.params.tandaId});
+	   await Pregunta.deleteMany({idt:req.params.tandaId});
+	   
+	   const qyd = await Pregunta.find({});
+		  req.session.itandas = [];
+		  req.session.ntandas = [];
+		  for (let e of qyd){
+			  req.session.itandas.push(e.idt);
+			  req.session.ntandas.push(e.name);
+		  }
+	   
+	   req.flash('del','La Tanda completa se ha borrado');
+	   res.redirect('/tandas')
+   });
 	
 	
 };

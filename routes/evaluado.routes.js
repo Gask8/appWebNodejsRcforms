@@ -57,5 +57,25 @@ module.exports = app => {
 	  res.redirect('/evaluados/'+idt)
   });
 	
+	// Calcular ById Get
+  router.get("/:idt/calcular/:evaluadoId", async(req, res)=>{
+	  const Pregunta = require("../models/preguntas.model.js");
+	  const idt = req.params.idt;
+	   const data = await Evaluado.findOne({_id:req.params.evaluadoId});
+	  const quest = await Pregunta.findOne({idt:idt});
+	  const vsession = req.session;
+	  res.render('evaluado/resultado',{ idt, data, quest, vsession })
+  });
+	
+	// Calcular ById Get
+  router.post("/:idt/calcular/:evaluadoId", async(req, res)=>{
+	  const Pregunta = require("../models/preguntas.model.js");
+	  const resp = req.body;
+	  const idt = req.params.idt;
+	  const data = await Evaluado.findOne({_id:req.params.evaluadoId});
+	  const quest = await Pregunta.findOne({idt:idt});
+	  const vsession = req.session;
+	  res.render('evaluado/reporte',{ idt, data, quest, vsession, resp })
+  });
 	
 };

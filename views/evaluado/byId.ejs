@@ -58,11 +58,12 @@
 					<%}%>
 			</tbody>
 		  </table>
+		
+		<a href="/evaluados/<%= idt %>/calcular/<%= data._id %>" class="btn btn-info btn-lg" style="width:100%">Calcular</a>
 			
-		<form style="align-items: flex-end;" id="delif" method="POST" action="/evaluados/<%= idt+"/"+data._id %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
+		<form style="align-items: flex-end; margin-top:45px" id="delif" method="POST" action="/evaluados/<%= idt+"/"+data._id %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
 			<button class="btn btn-danger">Borrar</button>
 		</form>
-	
 		<script src="/js/general.js"></script>
 	</body>
 <%- include('../partials/footer')%>	

@@ -26,26 +26,17 @@
 			<ul class="nav navbar-nav">
 				<%if (vsession.user!=undefined){%>
 			  <li><a href="/tandas">Tandas</a></li>
-				
-				<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Tanda 1
-				<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-				  <li><a href="/evaluados/20">Evaluados</a></li>
-				  <li><a href="/evaluadores/20">Evaluadores</a></li>
-				  <li><a href="/tandas/20">Preguntas</a></li>
-				</ul>
-			  </li>
-				
-				<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Tanda 2
-				<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-				  <li><a href="/evaluados/22">Evaluados</a></li>
-				  <li><a href="/evaluadores/22">Evaluadores</a></li>
-				  <li><a href="/tandas/22">Preguntas</a></li>
-				</ul>
-			  </li>
+				<%for (let e=0;e<vsession.itandas.length;e++) {%>
+						<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#"><%=vsession.ntandas[e]%>
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						  <li><a href="/evaluados/<%= vsession.itandas[e] %>">Evaluados</a></li>
+						  <li><a href="/evaluadores/<%= vsession.itandas[e] %>">Evaluadores</a></li>
+						  <li><a href="/tandas/<%= vsession.itandas[e] %>">Menu</a></li>
+						</ul>
+						</li>
+				<%}%>
 				<%}%>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

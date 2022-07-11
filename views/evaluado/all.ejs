@@ -9,6 +9,7 @@
 			<%}%>
 	
 		  <a href="/evaluados/<%= idt %>/new" class="btn btn-primary">Agregar Evaluado</a>
+			<a href="/evaluadores/<%= idt %>" class="btn btn-info">Ir a Evaluadodores</a>
 		  <h2>Evaluadores</h2>
 		  <p>Buscar por ID o mas cosas: </p>  
 		  <input class="form-control" id="myInput" type="text" placeholder="Search..">
@@ -17,6 +18,7 @@
 		  <table class="table table-bordered table-striped">
 			<thead>
 			  <tr>
+				<th>#</th>
 				<th>ID</th>
 				<th>Nombre</th>
 				<th>Posicion</th>
@@ -25,15 +27,16 @@
 			  </tr>
 			</thead>
 			<tbody id="myTable">
-				<%for (let element of evaluados) {%>
+				<%let j=1; for (let element of evaluados) {%>
 					<tr>
+						<td><%= j %></td>
 						<td><%= element._id %></td>
 						<td><%= element.nombre %></td>
 						<td><%= element.posicion %></td>
 						<td><%= element.correo %></td>
 						<td><a href="/evaluados/<%= idt+"/"+element._id %>" class="btn btn-info">Ver Info</a></td>
 					</tr>
-				<%}%>
+				<%j++;}%>
 			</tbody>
 		  </table>
 	
