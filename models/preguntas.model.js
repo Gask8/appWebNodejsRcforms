@@ -18,7 +18,9 @@ const preguntaSchema = new mongoose.Schema({
 	},
 	cati: {
 		type: [Number]
-	}
+	},
+	message: String,
+	messageS: String
 });
 
 const Pregunta = mongoose.model('Pregunta', preguntaSchema);

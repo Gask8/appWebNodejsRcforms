@@ -10,7 +10,15 @@ module.exports = app => {
 	  const data = await Pregunta.find({})
 	  const vsession = req.session;
 	  res.render('tanda/all',{ data, vsession })
-  });	
+  });
+	
+	// ALL Evaluadores Get
+  router.get("/all", async(req, res)=>{
+	  const Evaluadore = require("../models/evaluadores.model.js");
+	  const data = await Evaluadore.find({})
+	  const vsession = req.session;
+	  res.render('evaluador/total',{ data, vsession })
+  });
 	
 	// New Get
   router.get('/new', (req,res)=>{
@@ -46,6 +54,13 @@ module.exports = app => {
   res.render('tanda/byId',{ data, vsession })
   });
 	
+	// ById Message Get
+  router.get("/edit/:tandaId/message", async(req, res)=>{
+  const data = await Pregunta.findOne({_id:req.params.tandaId});
+  const vsession = req.session;
+  res.render('tanda/byId_message',{ data, vsession })
+  });
+	
 	// ById Put
   router.put("/:tandaId", async(req, res)=>{
 	  const data = req.body;
@@ -63,6 +78,17 @@ module.exports = app => {
 
 		req.flash('succes','Las tanda se han actualizado');
 		res.redirect('/tandas')
+  });
+	
+	// ById Message Put
+  router.put("/message/:tandaId", async(req, res)=>{
+	  const data = req.body;
+		Pregunta.findOneAndUpdate({_id:req.params.tandaId},{"message":data.editordata,"messageS":data.name}, function(err, result){
+			if(err){
+				res.send(err);
+		}});
+		req.flash('succes','El mensaje de ha guardado');
+		res.redirect('/tandas/edit/'+req.params.tandaId+'/message');
   });
 	
 	

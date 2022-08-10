@@ -54,12 +54,20 @@ module.exports = app => {
 	  res.render('evaluador/byId',{ idt, data, quest, vsession })
   });
 	
-	// Delete All
+	// All Delete 
   router.delete("/:idt", async(req, res)=>{
 	  const idt = req.params.idt;
 	  await Evaluadore.deleteMany({idt:idt})
 	  req.flash('del','Todo se ha borrado');
 	  res.redirect('/evaluadores/'+idt)
   })
+	
+	// SetCorreo false Post
+  router.post("/:idt/correo", async(req, res)=>{
+	  const idt = req.params.idt;
+	  const data = await Evaluadore.updateMany({idt:idt}, { semando: false });
+	  req.flash('succes','Se pueden volver a mandar correos');
+	  res.redirect('/evaluadores/'+idt+'/list')
+  });
 	
 };

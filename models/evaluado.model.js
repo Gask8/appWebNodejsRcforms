@@ -20,6 +20,9 @@ const evaluadoSchema = new mongoose.Schema({
 		respuestas: {
 			type: [Number]
 		},
+		comentarios: {
+			type: [String]
+		},
 		categoria: {
 			type: String,
 			required: true

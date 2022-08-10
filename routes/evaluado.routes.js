@@ -67,7 +67,7 @@ module.exports = app => {
 	  res.render('evaluado/resultado',{ idt, data, quest, vsession })
   });
 	
-	// Calcular ById Get
+	// Calcular ById Post
   router.post("/:idt/calcular/:evaluadoId", async(req, res)=>{
 	  const Pregunta = require("../models/preguntas.model.js");
 	  const resp = req.body;

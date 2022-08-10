@@ -20,6 +20,9 @@ const evaluadorSchema = new mongoose.Schema({
 		respuestas: {
 			type: [Number]
 		},
+		comentarios: {
+			type: [String]
+		}
 	}],
 	lastdate: {
 		type: Date,

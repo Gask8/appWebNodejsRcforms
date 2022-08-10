@@ -21,7 +21,7 @@
 				<th>#</th>
 				<th>Nombre</th>
 				<th>Form</th>
-				<th>Ver</th>
+				<!-- <th>Ver</th> -->
 				 <th>Correo</th>
 				<th>Se mando</th>
 			  </tr>
@@ -32,9 +32,9 @@
 						<td><%= j %></td>
 						<td><%= element.nombre %></td>
 						<td><a href="https://rcforms.run-us-west2.goorm.io/form/<%= element._id %>">https://rcforms.run-us-west2.goorm.io/form/<%= element._id %></a></td>
-						<td><a href="/form/<%= element._id %>" class="btn btn-info">Form</a></td>
+						<!-- <td><a href="/form/<%= //element._id %>" class="btn btn-info">Form</a></td> -->
 						<td><%= element.correo %></td>
-						<td class="text-center"><%if(element.semando){%>Si <span style="color:#2ac32a;" class="glyphicon glyphicon-ok"></span><% } else { %>No <span style="color:#ff6161;" class="glyphicon glyphicon-remove"></span><%}%></td>
+						<td class="text-center"><% if (element.contesto) {%>Ya <span style="color:#2b9dff;" class="glyphicon glyphicon-asterisk"></span><%} else if(element.semando){%>Si <span style="color:#2ac32a;" class="glyphicon glyphicon-ok"></span><% } else { %>No <span style="color:#ff6161;" class="glyphicon glyphicon-remove"></span><%}%></td>
 					</tr>
 				<%j++;}%>
 			</tbody>
@@ -42,6 +42,9 @@
 			
 			<form method="POST" action="/correos/<%= idt %>" onsubmit="return confirm('En serio quieres mandar correos?');">
 				<button style="background-color: #003d70" class="btn btn-primary btn-lg">Mandar Correos</button>
+			</form>
+			<form method="POST" action="/evaluadores/<%= idt %>/correo" onsubmit="return confirm('Vas a resetiar, Estas seguro???');">
+				<button class="btn btn-info btn-lg">Resetar Envios</button>
 			</form>
 			<div style="height: 25px;"></div>
 		</div>
