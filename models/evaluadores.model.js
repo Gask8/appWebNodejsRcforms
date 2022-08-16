@@ -21,7 +21,8 @@ const evaluadorSchema = new mongoose.Schema({
 			type: [Number]
 		},
 		comentarios: {
-			type: [String]
+			type: String,
+			default: null
 		}
 	}],
 	lastdate: {

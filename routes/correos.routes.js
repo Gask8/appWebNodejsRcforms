@@ -23,7 +23,7 @@ module.exports = app => {
 	// Send All
   router.post("/:idt", async(req, res)=>{
 	  const idt = req.params.idt;
-	  const data = await Evaluadore.find({idt:idt,"semando": "false","contesto":"false"}).limit(1);
+	  const data = await Evaluadore.find({idt:idt,"semando": "false","contesto":"false"}).limit(5);
 	  const messageHTML = await Pregunta.findOne({idt:idt});
 	  var j=0;
 	  var time=1000;
@@ -32,7 +32,11 @@ module.exports = app => {
 		await setTimeout(() => {
 			var string = "";
 			for(eva of e.evaluando){
-			  string+=eva.nombre+", ";
+				if(eva.nombre == e.nombre){
+					string+="Autoevaluación, ";
+				} else {
+					string+=eva.nombre+", ";
+				}
 			}
 			var realmessage = messageHTML.message;
 			var realmessage = realmessage.replace("|nombre|",e.nombre);
@@ -41,9 +45,9 @@ module.exports = app => {
 			
 				var mailOptions = {
 					from: 'RCForms <aariza@lcred.org>', // sender address (who sends)
-					to: "gasalandra@lcred.org", // list of receivers (who receives) e.correo
-					subject: messageHTML.messageS+' - Evaluación 360º '+e.nombre+'', // Subject line
-					text: 'Evaluación 360º', // plaintext body
+					to: e.correo, // list of receivers (who receives) e.correo
+					subject: 'Evaluación 360° - '+messageHTML.messageS+" - "+e.nombre, // Subject line
+					text: 'Evaluación 360°', // plaintext body
 					html: realmessage 
 				};
 

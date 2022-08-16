@@ -28,6 +28,7 @@ module.exports = app => {
 	  const evaluador = await Evaluadore.findOne({_id:id});
 	  for(let i=0;i<req.body.arr.length;i++){
 		  evaluador.evaluando[i].respuestas = req.body.arr[i];
+		  evaluador.evaluando[i].comentarios = req.body.brr[i];
 		  const evaluado = await Evaluado.findOne({nombre:evaluador.evaluando[i].nombre,idt:evaluador.idt});
 		  if(evaluado){
 			await Evaluado.findOneAndUpdate(
@@ -35,6 +36,7 @@ module.exports = app => {
 				{
 					$set: {
 						"evaluadores.$.respuestas": req.body.arr[i],
+						"evaluadores.$.comentarios": req.body.brr[i],
 						"evaluadores.$.contesto": true
 					 }
 				}

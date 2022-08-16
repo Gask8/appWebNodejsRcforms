@@ -17,7 +17,11 @@
 						sum += arr[i];
 						if(!(arr[i]==null || arr[i]==0)) cnt++;
 					}
-					return sum/cnt;
+					if(sum==null || sum==0){
+						return 0
+					} else {
+						return sum/cnt;
+					}
 				}
 			}%>
 			
@@ -123,22 +127,52 @@
 					<%const sums = [0,0,0,0,0,0]; for (let i = 0; i < quest.categoria.length; i++) {%>
 						<tr>
 							<td><%= quest.categoria[i]%></td>
-							<td><%if(queson.includes("Autoevaluación")){%><% let x = avg(data.evaluadores[quienes[0]].respuestas,quest.cati[i],quest.cati[i+1]).toFixed(2); sums[0]+=parseFloat(x) %><%= x %><input name="arr[0][<%=i%>]" type="hidden" value="<%= x %>"><%}else{%>N/A<input name="arr[0][<%=i%>]" type="hidden"><%}%></td>
-							<td><%if(queson.includes("Jefe")){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ if(queson[j]=="Colega"){sumt+=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]);conft++}}%><% let x =(sumt/conft).toFixed(2); sums[1]+=parseFloat(x)%><%= x %><input name="arr[1][<%=i%>]" type="hidden" value="<%= x %>"><%}else{%>N/A<input name="arr[1][<%=i%>]" type="hidden"><%}%></td>
-							<td><%if(queson.includes("Colega")){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ if(queson[j]=="Colega"){sumt+=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]);conft++}}%><% let x =(sumt/conft).toFixed(2); sums[2]+=parseFloat(x)%><%= x %><input name="arr[2][<%=i%>]" type="hidden" value="<%= x %>"><%}else{%>N/A<input name="arr[2][<%=i%>]" type="hidden"><%}%></td>
-							<td><%if(queson.includes("Colaboradores")){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ if(queson[j]=="Colaboradores"){sumt+=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]);conft++}}%><% let x =(sumt/conft).toFixed(2); sums[3]+=parseFloat(x)%><%= x %><input name="arr[3][<%=i%>]" type="hidden" value="<%= x %>"><%}else{%>N/A<input name="arr[3][<%=i%>]" type="hidden"><%}%></td>
-							<td><%if(queson.includes("Autoevaluación")&&queson.length>1){ let sumt=0, conft=0; for(let j=1; j<quienes.length;j++){ sumt+=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]);conft++}%><% let x =(sumt/conft).toFixed(2); sums[4]+=parseFloat(x)%><%= x %><input name="arr[4][<%=i%>]" type="hidden" value="<%= x %>"><%}else{%>N/A<input name="arr[4][<%=i%>]" type="hidden"><%}%></td>
-							<td><%if(queson.length>1){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ sumt+=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]);conft++}%><% let x =(sumt/conft).toFixed(2); sums[5]+=parseFloat(x)%><%= x %><input name="arr[5][<%=i%>]" type="hidden" value="<%= x %>"><%}else{%>N/A<input name="arr[5][<%=i%>]" type="hidden"><%}%></td>
+							<td><%if(queson.includes("Autoevaluación")){%>
+								<% let x = avg(data.evaluadores[quienes[0]].respuestas,quest.cati[i],quest.cati[i+1]).toFixed(2); sums[0]+=parseFloat(x) %><%= x %>
+								<input name="arr[0][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[0][<%=i%>]" type="hidden"><%}%></td>
+							
+							<td><%if(queson.includes("Jefe")){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ if(queson[j]=="Jefe"){sumt+=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]);conft++}}%>
+								<% let x =(sumt/conft).toFixed(2); sums[1]+=parseFloat(x)%><%= x %><input name="arr[1][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[1][<%=i%>]" type="hidden" value="N/A"><%}%></td>
+							
+							<td><%if(queson.includes("Colega")){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ let y = avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(queson[j]=="Colega" && y!=0){sumt+=y;conft++}};%>
+								<% let x =(sumt/conft).toFixed(2); sums[2]+=parseFloat(x)%><%= x %><input name="arr[2][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[2][<%=i%>]" type="hidden"><%}%></td>
+							
+							<td><%if(queson.includes("Colaboradores")){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ let y = avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(queson[j]=="Colaboradores" && y!=0){sumt+=y;conft++}}%>
+								<% let x =(sumt/conft).toFixed(2); sums[3]+=parseFloat(x)%><%= x %><input name="arr[3][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[3][<%=i%>]" type="hidden"><%}%></td>
+							
+							<td><%if(queson.includes("Autoevaluación")&&queson.length>1){ let sumt=0, conft=0; for(let j=1; j<quienes.length;j++){ let y = avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(y!=0){sumt+=y;conft++}}%>
+								<% let x =(sumt/conft).toFixed(2); sums[4]+=parseFloat(x)%><%= x %><input name="arr[4][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[4][<%=i%>]" type="hidden"><%}%></td>
+							
+							<td><%if(queson.length>1){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ let y=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(y!=0){sumt+=y;conft++}}%>
+								<% let x =(sumt/conft).toFixed(2); sums[5]+=parseFloat(x)%><%= x %><input name="arr[5][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[5][<%=i%>]" type="hidden"><%}%></td>
 						</tr>
 					<%}%>
 						<tr>
 							<td><b>TOTAL</b></td>
-							<td><b><%if(queson.includes("Autoevaluación")){%><%=(sums[0]/quest.categoria.length).toFixed(2)%><%}else{%>N/A<%}%></b></td>
-							<td><b><%if(queson.includes("Jefe")){%><%=(sums[1]/quest.categoria.length).toFixed(2)%><%}else{%>N/A<%}%></b></td>
-							<td><b><%if(queson.includes("Colega")){%><%=(sums[2]/quest.categoria.length).toFixed(2)%><%}else{%>N/A<%}%></b></td>
-							<td><b><%if(queson.includes("Colaboradores")){%><%=(sums[3]/quest.categoria.length).toFixed(2)%><%}else{%>N/A<%}%></b></td>
-							<td><b><%if(queson.includes("Autoevaluación")){%><%=(sums[4]/quest.categoria.length).toFixed(2)%><%}else{%>N/A<%}%></b></td>
-							<td><b><%if(queson.length>1){%><%=(sums[5]/quest.categoria.length).toFixed(2)%><%}else{%>N/A<%}%></b></td>
+							<td><b><%if(queson.includes("Autoevaluación")){ let x = (sums[0]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[0]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[0]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.includes("Jefe")){ let x = (sums[1]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[1]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[1]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.includes("Colega")){ let x = (sums[2]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[2]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[2]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.includes("Colaboradores")){ let x = (sums[3]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[3]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[3]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.includes("Autoevaluación")){ let x = (sums[4]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[4]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[4]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.length>1){ let x = (sums[5]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[5]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[5]" type="hidden" value="N/A"><%}%></b></td>
+							
 						</tr>
 				</tbody>
 		  </table>
@@ -156,6 +190,17 @@
 				<%}%>
 			</ul>
 			<input name="bajo" type="hidden" value="<%= qbajo %>">
+			
+			<div style="background:white; padding: 25px">
+				<hr>
+				<p><b>Comentarios para: <%=data.nombre%></b></p>
+				<ol>
+				<%for (let j = 0; j < quienes.length; j++) {%>
+				<li><%=data.evaluadores[quienes[j]].comentarios%></li>
+				<%}%>
+				</ol>
+				<hr>
+			</div>
 			
 				<button style="background-color: #003d70; width: 100%" class="btn btn-primary btn-lg">Reporte</button>
 			</form>

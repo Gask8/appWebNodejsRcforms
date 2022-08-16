@@ -54,7 +54,7 @@
               </th>
 				<%for (let j = 0; j < data.evaluando.length; j++) {%>
 					<td class="form-value">
-						<% if(data.evaluando[j].respuestas[i]!=null) {%><p><%= data.evaluando[j].respuestas[i] %></p><%}else{%><p>N/A</p><%}%>
+						<% if(data.evaluando[j].respuestas[i]==null || data.evaluando[j].respuestas[i]==0) {%><p>N/A</p><%}else{%><p><%= data.evaluando[j].respuestas[i] %></p><%}%>
 				  	</td>
 				<%}%>
             </tr>
@@ -64,6 +64,14 @@
 		<!-- <form style="align-items: flex-end;" id="delif" method="POST" action="/evaluadores/<%= idt %>/<%=data._id%>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
 			<button class="btn btn-danger">Borrar</button>
 		</form> -->
-
+			<div style="background:white; padding: 25px">
+				<hr>
+				<%for (let j = 0; j < data.evaluando.length; j++) {%>
+				<p><b>Comentarios para: <%=data.evaluando[j].nombre%></b></p>
+				<p><%=data.evaluando[j].comentarios%></p>
+				<hr>
+			</div>
+			<%}%>
+		</div>
 	</body>
 <%- include('../partials/footer')%>	

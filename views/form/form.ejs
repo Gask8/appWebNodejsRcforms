@@ -117,6 +117,16 @@
 				<% if(j%25==24) {%></div> <% } %>
 			<%}%>
 				</div>
+			
+			<div class="nonact">
+				<div class="form-col" style="width: 100%;">
+					<%for (let i = 0; i < data.evaluando.length; i++) {%>
+						<label>Comentarios para <%= data.evaluando[i].nombre %>:</label>
+						<textarea name="brr[<%=i%>]" rows="5" cols="50" style="padding: 15px;background: #F5F5F5;color: black;margin-bottom: 25px;"></textarea>
+					<%}%>
+				</div>
+			</div>
+			
 				<div class="nonact">
 					<hr class="hr-big">
 					<center><h3>¡Muchas Gracias!</h3></center>

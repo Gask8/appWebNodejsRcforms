@@ -108,10 +108,10 @@
 	</section>
 	
 	<section>
-		<h3 style="text-align: center; margin-top: 20px">RESULTADO GLOBAL EVALUACIÓN DE COMPETENCIAS</h3>
+		<h3 style="text-align: center; margin-top: 20px"><b>RESULTADO GLOBAL EVALUACIÓN DE COMPETENCIAS</b></h3>
 		<table style="width: 100%;">
 			<tr>
-				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner">00.00%</div></div></td>
+				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner"><%=resp.brr[5]%>%</div></div></td>
 				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner">00.00%</div></div></td>
 			</tr>
 			<tr>
@@ -146,6 +146,16 @@
 							<td></td>
 						</tr>
 					<%}%>
+						<tr>
+							<td class="cate"><b>Total</b></td>
+							<td class="a"><b><%= resp.brr[0] %></b></td>
+							<td class="b"><b><%= resp.brr[1] %></b></td>
+							<td class="c"><b><%= resp.brr[2] %></b></td>
+							<td class="d"><b><%= resp.brr[3] %></b></td>
+							<td class="e"><b><%= resp.brr[4] %></b></td>
+							<td class="f"><b><%= resp.brr[5] %></b></td>
+							<td></td>
+						</tr>
 				</tbody>
 		  </table>
 		<p style="text-align: right; padding: 10px 0;">*El resultado total no contempla la autoevaluación</p>
