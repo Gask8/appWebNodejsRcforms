@@ -1,0 +1,69 @@
+<%- include('../partials/head')%>
+	
+       <div class="container" id="crform">
+			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/tandas">Regresar</a>
+			<h1>Agregar Tanda</h1>
+			<div id="nuevo">
+				<form action="/tandas" method="post">
+				<center><div class="form-col">
+				<label for="name">Nombre de la Tanda:</label>
+				<input id="name" name="name" type="TEXT"/>
+					</div></center>
+				<center><div class="form-col">
+				<label for="idt">ID de la tanda:</label>
+				<input id="idt" name="idt" type="number"/>
+				</div></center>
+					
+				<div class="form-row">
+				<div class="form-col" style="width: 98%;">
+					<label for="preg">Preguntas:</label>
+					<textarea id="preg" name="preg" rows="10" cols="50"></textarea>
+					<label for="label">Opciones:</label>
+					<textarea id="label" name="label" rows="7" cols="50">No lo he observado
+Totalmente en desacuerdo
+En desacuerdo
+Medianamente en desacuerdo
+Medianamente de acuerdo
+De acuerdo
+Totalmente de acuerdo</textarea>
+					<label for="val">Valores:</label>
+					<textarea id="val" name="val" rows="7" cols="50"> 
+16.67
+33.33
+50
+66.67
+83.33
+100</textarea>
+					<label for="cat">Categoria:</label>
+					<textarea id="cat" name="cat" rows="6" cols="50">Comprensión
+Comunicación
+Desarrollo, Atención y Formación de otros
+Formación
+Inteligencia emocional
+Interrelaciones
+Liderazgo
+Planeación y Organización 
+Sentido emprendedor
+Solución de problemas y Toma de decisiones
+Trabajo en Equipo </textarea>
+					<label for="cati">Indices:</label>
+					<textarea id="cati" name="cati" rows="6" cols="50">0
+6
+12
+18
+24
+30
+36
+44
+52
+60
+68</textarea>
+				</div>
+				</div>		
+                <button>Enviar</button>
+         </form>
+		</div>
+       </div>
+
+	</body>
+<%- include('../partials/footer')%>	

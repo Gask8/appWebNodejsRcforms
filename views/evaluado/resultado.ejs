@@ -1,0 +1,219 @@
+<%- include('../partials/head')%>
+	
+		<div class="container" id="crform">
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluados/<%= idt %>/<%= data._id %>">Regresar</a>
+		<h1>Evaluado: <%= data.nombre%></h1>
+		 
+		<%function avg(arr,fw,tw) {
+				if(arr.length==0){
+					return null;
+				} else {
+					var sum = 0;
+					var cnt = 0;
+					for (var i = fw; i < tw; i++) {
+						sum += arr[i];
+						if(!(arr[i]==null || arr[i]==0)) cnt++;
+					}
+					if(sum==null || sum==0){
+						return 0
+					} else {
+						return sum/cnt;
+					}
+				}
+			}%>
+			
+		<table id="tabif" class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Posicion</th>
+				<th>Correo</th>
+			</tr>
+			</thead>
+			  <h3>Informacion Basica:</h3>
+				<tbody id="myTable2">
+				<tr>
+					<td><%= data._id %></td>
+					<td><%= data.nombre %></td>
+					<td><%= data.posicion %></td>
+					<td><%= data.correo %></td>	
+				</tr>
+			</tbody>
+		  </table>
+			
+		
+		<%let idx=0;%>
+		<%let quienes=[], queson=[], qalto=[], qbajo=[];%>
+		<%for (let i = 0; i < data.evaluadores.length; i++) { if(data.evaluadores[i].contesto) {quienes.push(i);queson.push(data.evaluadores[i].categoria)} }; let cont=quienes.length; %>
+			
+		<div style="overflow-x:auto;">
+		  <h2>Tabla de Informacion</h2>
+          <table class="table">
+            <tbody>
+				<tr>
+              <th style="border:none">&nbsp;</th>
+				<%for (let i = 0; i < cont; i++) {%>
+					<th class="form-th">
+						<label> <%= data.evaluadores[quienes[i]].nombre %><br>(<%= data.evaluadores[quienes[i]].categoria %>)</label>
+					</th>
+				<%}%>
+				<th class="form-th">
+					<label> AVG </label>
+				</th>
+            </tr>
+			<%for (let i = 0; i < quest.preg.length; i++) {%>
+				<%if(i === quest.cati[idx]) {%>
+					<tr>
+					  <th colspan="<%=cont+2%>" class="thheader form-th"><%= quest.categoria[idx]%></th>
+					</tr>
+				<%idx++;}%>
+				<tr>
+				  <th class="form-th">
+					<label> <%= quest.preg[i] %></label>
+				  </th>
+					<%let contr=cont,sumr=0%>
+					<%for (let j = 0; j < cont; j++) {%>
+							<td class="form-value">
+							<% if(data.evaluadores[quienes[j]].respuestas[i]==null || data.evaluadores[quienes[j]].respuestas[i]==0) {%>
+								<p>N/A</p>
+								<% contr --; %>
+							<%}else{%>
+								<p><%= data.evaluadores[quienes[j]].respuestas[i] %></p>
+								<% sumr += data.evaluadores[quienes[j]].respuestas[i];%>
+							<%}%>
+							</td>
+					<%};%>
+					<td class="form-value <%if((sumr/contr)>94.5){ qalto.push(i);%>alto<%}%> <%if((sumr/contr)<67.5){qbajo.push(i);%> bajo<%}%>">
+						<p><%= (sumr/contr).toFixed(2); %></p>
+					</td>
+				</tr>
+				<%if(i+1 === quest.cati[idx]) {%>
+				<tr>
+					  <th class="form-th">AVG</th>
+				    <%for (let j = 0; j < cont; j++) {%>
+						<td class="form-th">
+							<p><%= avg(data.evaluadores[quienes[j]].respuestas,quest.cati[idx-1],quest.cati[idx]).toFixed(2); %></p>
+						</td>
+					<%}%>
+					<td class="form-th"></td>
+				</tr>
+				<%}%>
+			<%}%>
+          </tbody></table>
+			
+			
+			
+		<!-- 	Respuestas	 -->
+		<div style="margin-top:50px; background:white;padding: 10px 5%;">
+		<form method="POST" action="/evaluados/<%= idt %>/calcular/<%=data._id%>">
+		<h2>Tabla de Respuestas</h2>
+		<table class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<th>Competencia</th>
+				<th>Autoevaluación</th>
+				<th>Jefe</th>
+				<th>Colega</th>
+				<th>Colaborador</th>
+				<th>Con Autoevaluación</th>
+				<th>Resultados</th>
+			</tr>
+			</thead>
+				<tbody>
+					<%const sums = [0,0,0,0,0,0]; for (let i = 0; i < quest.categoria.length; i++) {%>
+						<tr>
+							<td><%= quest.categoria[i]%></td>
+							<td><%if(queson.includes("Autoevaluación")){%>
+								<% let x = avg(data.evaluadores[quienes[0]].respuestas,quest.cati[i],quest.cati[i+1]).toFixed(2); sums[0]+=parseFloat(x) %><%= x %>
+								<input name="arr[0][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[0][<%=i%>]" type="hidden"><%}%></td>
+							
+							<td><%if(queson.includes("Jefe")){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ if(queson[j]=="Jefe"){sumt+=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]);conft++}}%>
+								<% let x =(sumt/conft).toFixed(2); sums[1]+=parseFloat(x)%><%= x %><input name="arr[1][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[1][<%=i%>]" type="hidden" value="N/A"><%}%></td>
+							
+							<td><%if(queson.includes("Colega")){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ let y = avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(queson[j]=="Colega" && y!=0){sumt+=y;conft++}};%>
+								<% let x =(sumt/conft).toFixed(2); sums[2]+=parseFloat(x)%><%= x %><input name="arr[2][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[2][<%=i%>]" type="hidden"><%}%></td>
+							
+							<td><%if(queson.includes("Colaboradores")){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ let y = avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(queson[j]=="Colaboradores" && y!=0){sumt+=y;conft++}}%>
+								<% let x =(sumt/conft).toFixed(2); sums[3]+=parseFloat(x)%><%= x %><input name="arr[3][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[3][<%=i%>]" type="hidden"><%}%></td>
+							
+							<td><%if(queson.includes("Autoevaluación")&&queson.length>1){ let sumt=0, conft=0; for(let j=1; j<quienes.length;j++){ let y = avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(y!=0){sumt+=y;conft++}}%>
+								<% let x =(sumt/conft).toFixed(2); sums[4]+=parseFloat(x)%><%= x %><input name="arr[4][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[4][<%=i%>]" type="hidden"><%}%></td>
+							
+							<td><%if(queson.length>1){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ let y=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(y!=0){sumt+=y;conft++}}%>
+								<% let x =(sumt/conft).toFixed(2); sums[5]+=parseFloat(x)%><%= x %><input name="arr[5][<%=i%>]" type="hidden" value="<%= x %>">
+								<%}else{%>N/A<input name="arr[5][<%=i%>]" type="hidden"><%}%></td>
+						</tr>
+					<%}%>
+						<tr>
+							<td><b>TOTAL</b></td>
+							<td><b><%if(queson.includes("Autoevaluación")){ let x = (sums[0]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[0]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[0]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.includes("Jefe")){ let x = (sums[1]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[1]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[1]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.includes("Colega")){ let x = (sums[2]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[2]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[2]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.includes("Colaboradores")){ let x = (sums[3]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[3]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[3]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.includes("Autoevaluación")){ let x = (sums[4]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[4]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[4]" type="hidden" value="N/A"><%}%></b></td>
+							
+							<td><b><%if(queson.length>1){ let x = (sums[5]/quest.categoria.length).toFixed(2)%>
+								<%=x%><input name="brr[5]" type="hidden" value="<%=x%>"><%}else{%>N/A<input name="brr[5]" type="hidden" value="N/A"><%}%></b></td>
+							
+						</tr>
+				</tbody>
+		  </table>
+			<h3>Actitudes Sobresalientes</h3>
+			<ul>
+				<%for (let i = 0; i < qalto.length; i++) {%>
+					<li><%=quest.preg[qalto[i]]%></li>
+				<%}%>
+			</ul>
+			<input name="alto" type="hidden" value="<%= qalto %>">
+			<h3>Actitudes por Trabajar</h3>
+			<ul>
+				<%for (let i = 0; i < qbajo.length; i++) {%>
+					<li><%=quest.preg[qbajo[i]]%></li>
+				<%}%>
+			</ul>
+			<input name="bajo" type="hidden" value="<%= qbajo %>">
+			
+			<div style="background:white; padding: 25px">
+				<hr>
+				<p><b>Comentarios para: <%=data.nombre%></b></p>
+				<ol>
+				<%for (let j = 0; j < quienes.length; j++) {%>
+				<li><%=data.evaluadores[quienes[j]].comentarios%></li>
+				<%}%>
+				</ol>
+				<hr>
+			</div>
+			
+				<button style="background-color: #003d70; width: 100%" class="btn btn-primary btn-lg">Reporte</button>
+			</form>
+		</div>
+			
+		<style>
+			.bajo{
+				background: #ff828270;
+			}
+			.alto{
+				background: #9fff8770;
+			}
+		</style>
+		<script src="/js/general.js"></script>
+	</body>
+<%- include('../partials/footer')%>	

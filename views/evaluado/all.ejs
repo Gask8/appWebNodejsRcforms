@@ -1,0 +1,52 @@
+<%- include('../partials/head')%>
+
+		<div class="container" id="crform">
+			<% if(del && del.length) {%>
+			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+			<%}%>
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+	
+		  <a href="/evaluados/<%= idt %>/new" class="btn btn-primary">Agregar Evaluado</a>
+			<a href="/evaluadores/<%= idt %>" class="btn btn-info">Ir a Evaluadodores</a>
+		  <h2>Evaluadores</h2>
+		  <p>Buscar por ID o mas cosas: </p>  
+		  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+		  <br>
+			
+		  <table class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<th>#</th>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Posicion</th>
+				<th>Correo</th>
+				<th>Mas info</th>
+			  </tr>
+			</thead>
+			<tbody id="myTable">
+				<%let j=1; for (let element of evaluados) {%>
+					<tr>
+						<td><%= j %></td>
+						<td><%= element._id %></td>
+						<td><%= element.nombre %></td>
+						<td><%= element.posicion %></td>
+						<td><%= element.correo %></td>
+						<td><a href="/evaluados/<%= idt+"/"+element._id %>" class="btn btn-info">Ver Info</a></td>
+					</tr>
+				<%j++;}%>
+			</tbody>
+		  </table>
+	
+			<!-- <form method="POST" action="/evaluado?_method=DELETE" onsubmit="return confirm('En serio quieres borrar todo?');">
+				<button class="btn btn-danger long">Borrar Todo</button>
+			</form> -->
+			
+			<div style="height: 25px;"></div>
+		</div>
+
+		<script src="/js/general.js"></script>
+	</body>
+<%- include('../partials/footer')%>	

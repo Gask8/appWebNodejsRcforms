@@ -1,0 +1,44 @@
+<%- include('../partials/head')%>
+		
+		<div class="container" id="crform">
+			<% if(del && del.length) {%>
+			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+			<%}%>
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+			 
+			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/tandas">Regresar</a>
+			<h1>Info de la Tanda</h1>
+<div id="nuevo">
+				<form action="/tandas/<%= data._id %>?_method=PUT" method="post">
+		<center><div class="form-col">
+				<label for="name">Nombre de la Tanda:</label>
+				<input id="name" name="name" type="TEXT" value="<%= data.name %>"/>
+					</div></center>
+				<center><div class="form-col">
+				<label for="idt">ID de la tanda:</label>
+				<input disabled id="idt" name="idt" type="number" value="<%= data.idt %>"/>
+		</div></center>
+		<% let i = 0;%>
+		<div class="form-row">
+			 <div class="form-col" style="width: 98%;">
+			<label for="preg">Preguntas:</label>
+			<textarea id="preg" name="preg" rows="10" cols="50"><% for(let e of data.preg){if(i===data.preg.length-1){%><%=e%><%;i=0;}else{%><%=e+"\r\n"%><%i++;}}%></textarea>
+			<label for="label">Opciones:</label>
+			<textarea id="label" name="label" rows="7" cols="50"><% for(let e of data.label){if(i===data.label.length-1){%><%=e%><%;i=0;}else{%><%=e+"\r\n"%><%i++;}}%></textarea>
+			<label for="val">Valores:</label>
+			<textarea id="val" name="val" rows="7" cols="50"><% for(let e of data.val){if(i===data.val.length-1){%><%=e%><%;i=0;}else{%><%=e+"\r\n"%><%i++;}}%></textarea>
+			<label for="cat">Categoria:</label>
+			<textarea id="cat" name="cat" rows="6" cols="50"><% for(let e of data.categoria){if(i===data.categoria.length-1){%><%=e%><%;i=0;}else{%><%=e+"\r\n"%><%i++;}}%></textarea>
+			<label for="cati">Indices:</label>
+			<textarea id="cati" name="cati" rows="6" cols="50"><% for(let e of data.cati){if(i===data.cati.length-1){%><%=e%><%;i=0;}else{%><%=e+"\r\n"%><%i++;}}%></textarea>
+	</div>
+</div>		
+                <button>Enviar</button>
+         </form>
+		</div>
+       </div>
+
+	</body>
+<%- include('../partials/footer')%>	

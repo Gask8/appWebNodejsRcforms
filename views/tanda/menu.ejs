@@ -1,0 +1,67 @@
+<%- include('../partials/head')%>
+		<div class="container">
+			
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+			<style>
+				.menuc a span{
+					font-size: 100px;
+					color: black;
+				}
+				.menuc a {
+					text-decoration: none;
+				}
+			</style>
+			<div class="jumbotron" style="margin-top: 50px">
+				<h1>Tanda: <%= data.name %></h1>
+				<p>Menu:</p>
+				<div class="menuc">
+					<a href="/evaluados/<%= data.idt %>" class="menuop">
+						<span class="glyphicon glyphicon-user"></span>
+						<h2>Evaluados</h2>
+					</a>
+					<a href="/evaluadores/<%= data.idt %>" class="menuop">
+						<span class="glyphicon glyphicon-eye-open"></span>
+						<h2>Evaluadores</h2>
+					</a>
+					<a href="/tandas/edit/<%= data._id %>" class="menuop">
+						<span class="glyphicon glyphicon-edit"></span>
+						<h2>Preguntas</h2>
+					</a>
+					<a href="/tandas/edit/<%= data._id %>/message" class="menuop">
+						<span class="glyphicon glyphicon-envelope"></span>
+						<h2>Mensaje</h2>
+					</a>
+				</div>
+		<form style="align-items: flex-end; margin-top: 50px" id="delif" method="POST" action="/tandas/<%= idt %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
+			<button class="btn btn-danger">Borrar</button>
+		</form>
+			</div>
+			
+		</div>
+		
+		<style>
+			.menuc{
+				display: flex;
+				justify-content: space-evenly;
+			}
+
+			.menuop{
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+				justify-content: center;
+				background: #b5b5b5a6;
+				border-radius: 20px;
+				width: 220px;
+				height: 180px;
+			}
+
+			.menuop img{
+				width: 100px;
+				height: 100px;
+			}
+	</style>
+	</body>
+<%- include('../partials/footer')%>	

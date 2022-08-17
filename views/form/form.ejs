@@ -1,0 +1,258 @@
+<%- include('../partials/headless')%>
+	
+	<body>
+		<div class="container" id="crform" style="margin: 50px auto; background: #ffffff">
+			<% if(del && del.length) {%>
+			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+			<%}%>
+			<% if(succes && succes.length) {%>
+			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+			<%}%>
+			
+			<div class="activesld nonact">
+			<center><img id="mob-img" alt="RClogo" loading="lazy" class="form-image" style="border:0" src="/images/RC_Color_Horizontal.png" height="135px" width="618px"></center>
+			<hr>
+			<h2 class="text-center">Evaluación 360º para <%=quest.name%></h2>
+			<div class="text-center">¡Venga tu Reino!</div>
+			<hr>
+			<hr>
+			<div>Estimado en Cristo, <%= data.nombre %>:</div><hr>
+			<div>Ha sido elegido por su Director para contestar la evaluación 360º que se está realizando desde la Oficina Territorial de Apostolado. En esta evaluación, usted podrá evaluar las habilidades que ha observado tiene el coordinador de su localidad.</div><hr>
+			<div>La fecha límite para contestar esta evaluación es el 29 de Julio del presente año.</div><hr>
+			<div>Si tiene alguna duda puede comunicarse con Ana Paula Ariza (aariza@arcol.org) o con Gabriel Salandra (gasalandra@lcred.org). Su participación es muy importante para el crecimiento de su localidad, muchas gracias y Dios lo bendiga.</div><hr>
+			<hr>
+			</div>
+			
+			
+			<form action="/form/<%= data._id %>" method="post">
+			<div class="nonact">
+				<hr>
+				<center><h3>Información Inicial, por favor llene todos los campos:</h3></center>
+				<hr><hr><center style="margin: 30px 0">
+				<label for="fname">Escribe aquí quien llena el formulario<span class="form-required">*</span></label>
+				<label for="fname" style="min-height:13px">Nombre:</label>
+				<input type="text" id="fname" name="fname" size="30" value="" required>
+				</center>
+				<hr><hr>
+			<center style="margin: 30px 0"><label for="input_1">¿A qué localidad perteneces?<span>*</span></label>
+		  	<select id="input_1" name="localidad" style="width:150px" required>
+				<option value="">  </option>
+				<option value="Acapulco"> Acapulco </option>
+				<option value="Campeche"> Campeche </option>
+				<option value="Cancún"> Cancún </option>
+				<option value="CDMX Norte"> CDMX Norte </option>
+				<option value="CDMX Poniente"> CDMX Poniente </option>
+				<option value="CDMX Sur"> CDMX Sur </option>
+				<option value="Chetumal"> Chetumal </option>
+				<option value="Costa Rica"> Costa Rica </option>
+				<option value="Cotija"> Cotija </option>
+				<option value="Cuernavaca"> Cuernavaca </option>
+				<option value="El Salvador   "> El Salvador </option>
+				<option value="Guatemala"> Guatemala </option>
+				<option value="Lindavista"> Lindavista </option>
+				<option value="Mérida"> Mérida </option>
+				<option value="Morelia"> Morelia </option>
+				<option value="Oaxaca"> Oaxaca </option>
+				<option value="Pachuca"> Pachuca </option>
+				<option value="Prelatura Cozumel"> Prelatura Cozumel </option>
+				<option value="Prelatura Playa del Carmen"> Prelatura Playa del Carmen </option>
+				<option value="Puebla"> Puebla </option>
+				<option value="Querétaro"> Querétaro </option>
+				<option value="Tapachula "> Tapachula </option>
+				<option value="Toluca "> Toluca </option>
+				<option value="Tuxtla "> Tuxtla </option>
+				<option value="Veracruz"> Veracruz </option>
+				<option value="Xalapa"> Xalapa </option>
+				<option value="Córdoba"> Córdoba </option>
+				<option value="Orizaba"> Orizaba </option>
+				<option value="Villahermosa"> Villahermosa </option>
+		  	</select>
+			<label for="input_2">¿A qué sección perteneces?<span >*</span></label>
+          	<select id="input_2" name="seccion" style="width:150px" required>
+				<option value="">  </option>
+				<option value="ECYD femenino "> ECYD femenino </option>
+				<option value="ECYD masculino "> ECYD masculino </option>
+				<option value="RC jóvenes femenino "> RC jóvenes femenino </option>
+				<option value="RC jóvenes masculino"> RC jóvenes masculino </option>
+				<option value="RC adultos femenino "> RC adultos femenino </option>
+				<option value="RC adultos masculino "> RC adultos masculino </option>
+				<option value="No aplica"> No aplica </option>
+          	</select>
+			</center>
+			<hr><hr>
+			</div>
+				
+		  <!-- Comienza el Juego-->
+		<%for (let j = 0; j < quest.preg.length; j++) {%>
+			<% if(j%25==0) {%><div class="nonact"> <% } %>
+        <label class="label-preg"> <%= quest.preg[j] %></label>
+		  <div style="overflow-x:auto;">
+          <table cellpadding="4" cellspacing="0" >
+            <tbody><tr>
+				
+              <th style="border:none">&nbsp;</th>
+				<%for (let element of quest.label) {%>
+					<th class="form-th">
+						<label> <%= element %> </label>
+					</th>
+				<%}%>
+				
+            </tr>
+			<%for (let i = 0; i < data.evaluando.length; i++) {%>
+            <tr>
+              <th class="form-th">
+                <label> <%= data.evaluando[i].nombre %></label>
+              </th>
+				
+				<%for (let element of quest.val) {%>
+					<td class="form-value">
+						<input type="radio" class="form-radio" name="arr[<%=i%>][<%=j%>]" value="<%= element %>" required>
+				  	</td>
+				<%}%>
+				
+            </tr>
+				<%}%>
+			  </tbody></table></div>
+			<hr class="hr-big">
+				<% if(j%25==24) {%></div> <% } %>
+			<%}%>
+				</div>
+			
+			<div class="nonact">
+				<div class="form-col" style="width: 100%;">
+					<%for (let i = 0; i < data.evaluando.length; i++) {%>
+						<label>Comentarios para <%= data.evaluando[i].nombre %>:</label>
+						<textarea name="brr[<%=i%>]" rows="5" cols="50" style="padding: 15px;background: #F5F5F5;color: black;margin-bottom: 25px;"></textarea>
+					<%}%>
+				</div>
+			</div>
+			
+				<div class="nonact">
+					<hr class="hr-big">
+					<center><h3>¡Muchas Gracias!</h3></center>
+					<center><h3>Pulse Enviar para terminar el formulario</h3></center>
+					<hr class="hr-big">
+					<center><button class="btn btn-primary" style="width: 25%">Enviar</button></center>
+					<hr class="hr-big">
+				</div>
+			</form>
+			<div class="botombtn">
+				<button id="atr" style="display: none" class="btn btn-primary" onclick="atras()">&lt; Anterior</button><button id="adl" class="btn btn-primary" onclick="adelante()">Siguiente &gt;</button>
+			</div>
+		</div>
+	</body>
+<style>
+	.form-th{
+	font-size: inherit !important;
+	}
+	.activesld{
+		display: block !important;
+	}
+	.nonact{
+		display: none;
+	}
+	.botombtn{
+		display: flex;
+    	justify-content: space-evenly;
+	}
+	.botombtn .btn, .botombt .btn-primary{
+		width: 25%;
+		background-color: #dddddd;
+		border-color: #cccccc;
+		color: black;
+		height: 40px;
+		font-weight: bold;
+	}
+	.botombtn .btn:hover, .botombt .btn-primary:hover{
+		background-color: #ebebeb;
+		transition: all 0.5s;
+	}
+	
+	@media only screen and (max-width: 600px) {
+		#mob-img {
+			width: 200px;
+			height: 45px;
+		}
+	
+		.botombtn .btn, .botombt .btn-primary{
+			width: 45%;
+		}
+	}
+</style>
+<script>
+	var indexC = 0;
+	var x = document.querySelectorAll(".nonact");
+	var atr = document.querySelector("#atr");
+	var adl = document.querySelector("#adl");
+	var falt = 0;
+	
+	function atras(){
+		atr.style.display="block";
+		adl.style.display="block";
+		x[indexC].classList.remove("activesld");
+		if(indexC!=0)
+			indexC--;
+		if(indexC==0)
+			atr.style.display="none";
+		x[indexC].classList.add("activesld");
+		scrollUp(0);
+	}
+	function adelante(){
+		adl.style.display="block";
+		atr.style.display="block";
+		if(indexC==1)
+			if(!checkinputs()){
+				alert("No se llenaron todos los campos");
+				return;
+			}
+		if(indexC>=2)
+			if(!checkboxes()){
+				alert("No se llenaron todos los campos.");
+				y = x[indexC].querySelectorAll("input");
+				if(falt>2){
+					y[falt*7-18].scrollIntoView();
+				} else {
+					scrollUp(0);
+				}
+				return;
+			}
+		x[indexC].classList.remove("activesld");
+		if(indexC!=x.length-1)
+			indexC++;
+		if(indexC==x.length-1)
+			adl.style.display="none";
+		x[indexC].classList.add("activesld");
+		scrollUp(0);
+	}
+	
+	function checkinputs(){
+		if(x[indexC].querySelector("input").value=='') return false;
+		if(x[indexC].querySelectorAll("select")[0].value=='') return false;
+		if(x[indexC].querySelectorAll("select")[1].value=='') return false;
+		return true;
+	}
+	function checkboxes(){
+		var y = x[indexC].querySelectorAll("input");
+		for(let i=0;i<y.length/7;i++){
+			if(checkrow(y,i)){
+				falt=i;
+				return false;
+			}
+		}
+		return true;
+	}
+	function checkrow(y,i){
+		for(let j=0;j<7;j++){
+			if(y[i*7+j].checked) return false;
+		}
+		return true;
+	}
+	function scrollUp(x){
+		window.scrollTo({
+  		top: x,
+  		left: 0,
+  		behavior: 'smooth'
+		});
+	}
+</script>
+<%- include('../partials/footer')%>	

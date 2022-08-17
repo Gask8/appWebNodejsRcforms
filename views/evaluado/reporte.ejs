@@ -1,0 +1,267 @@
+<%- include('../partials/headless')%>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+<style>
+	body{background: white !important;}
+	
+	 @media print {
+      h1, h2 {
+        color: #ffffff !important;
+      }
+		 
+   }
+	
+		.cover{
+			width: 200px;
+			height: 200px;
+			border: 5px solid #507E32;
+			background: #70AD47;
+			margin: auto;
+			padding-top: 20px;
+		 }
+		 .inner{
+			border: 5px solid #507E32;
+			background: white;
+			width: 150px;
+			height: 150px;
+			margin: auto;
+			text-align: center;
+			font-size: 30px;
+			font-weight: bold;
+			color: #70AD47;
+			padding-top: 50px;
+		 }
+	section{
+		height: 1375px;
+	}
+</style>
+
+
+<section>
+<img style="width: 100%" src="/images/coverReport.png">
+<div style="margin-top: -700px; margin-left:10%;">
+	<h1 style="font-size: 5rem; color:white">Reporte Individual</h1>
+	<h1 style="font-size: 4rem; color:white"><%=quest.name%></h1>
+	<h2 style="font-size: 2rem; color:white"><%=data.nombre%></h2>
+</div>
+</section>
+
+<div class="container" style="margin-top: 700px">
+	
+	<section>
+	 <table class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<th colspan="2">TABLA DE DEFINICIÓN DE COMPETENCIAS</th>
+			  </tr>
+			</thead>
+			<tbody id="myTable">
+				<tr>
+					<td>COMPETENCIA</td>
+					<td>DESCRIPCIÓN</td>
+				</tr>
+				<tr>
+					<td>Comprensión</td>
+					<td>Capacidad de percibir y analizar delante de quién y de qué se encuentra, para decidir y actuar de forma adecuada.</td>
+				</tr>
+				<tr>
+					<td>Comunicación</td>
+					<td>Capacidad de persuadir a sus interlocutores de acuerdo con el objetivo deseado, mediante el envío de mensajes claros a las personas correctas a través de medios efectivos. Al mismo tiempo posee la habilidad para escuchar efectivamente a los demás y ser sensible con sus circunstancias.</td>
+				</tr>
+				<tr>
+					<td>Desarrollo, atención y formación de otros</td>
+					<td>Capacidad de desarrollar, acompañar y formar a cada persona para que alcance su plenitud como ser humano y cristiano. </td>
+				</tr>
+				<tr>
+					<td>Formación</td>
+					<td>Capacidad y compromiso personal por adquirir o mejorar sus conocimientos y habilidades por diferentes medios.</td>
+				</tr>
+				<tr>
+					<td>Inteligencia emocional</td>
+					<td>Capacidad de estar en sintonía con las propias emociones para saber expresarlas de manera apropiada, así como comprender las emociones de los demás.</td>
+				</tr>
+				<tr>
+					<td>Interrelaciones</td>
+					<td>Capacidad de relacionarse con las personas en un ambiente de confianza que favorezca que se sientan comprendidas.</td>
+				</tr>
+				<tr>
+					<td>Liderazgo</td>
+					<td>Orientar la acción de las personas y de los grupos de trabajo en una dirección determinada para el cumplimiento de objetivos.</td>
+				</tr>
+				<tr>
+					<td>Planeación y organización</td>
+					<td>Capacidad de planear con claridad para lograr los objetivos, transmitiendo la visión dando seguimiento y resolviendo los obstáculos que se presenten en su ejecución.</td>
+				</tr>
+				<tr>
+					<td>Sentido Emprendedor </td>
+					<td>Proponer soluciones nuevas y alternativas ante los retos en el trabajo.</td>
+				</tr>
+				<tr>
+					<td>Solución de problemas y toma de decisiones</td>
+					<td>Capacidad de resolver los problemas de la vida diaria de manera eficaz, flexible y creativa.</td>
+				</tr>
+				<tr>
+					<td>Trabajo en equipo</td>
+					<td>Capacidad de cooperar y colaborar con los demás miembros del equipo</td>
+				</tr>
+			</tbody>
+		  </table>
+	</section>
+	
+	<section>
+		<h3 style="text-align: center; margin-top: 20px"><b>RESULTADO GLOBAL EVALUACIÓN DE COMPETENCIAS</b></h3>
+		<table style="width: 100%;">
+			<tr>
+				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner"><%=resp.brr[5]%>%</div></div></td>
+				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner">00.00%</div></div></td>
+			</tr>
+			<tr>
+				<td style="text-align: center; padding: 20px 0;">Resultado Total*</td>
+				<td style="text-align: center; padding: 20px 0;">Resultado empleados <br>del mismo nivel</td>
+			</tr>
+		</table>
+			
+		<table class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+				<th>COMPETENCIA</th>
+				<th>Autoevaluación</th>
+				<th>Jefe</th>
+				<th>Colega</th>
+				<th>Colaborador</th>
+				<th>Resultado con autoevaluación</th>
+				<th>Resultado sin autoevaluación</th>
+				<th>Resultado empleados del mismo nivel</th>
+			</tr>
+			</thead>
+				<tbody>
+					<%for (let i = 0; i < quest.categoria.length; i++) {%>
+						<tr>
+							<td class="cate"><%= quest.categoria[i]  %></td>
+							<td class="a"><%= resp.arr[0][i] %></td>
+							<td class="b"><%= resp.arr[1][i] %></td>
+							<td class="c"><%= resp.arr[2][i] %></td>
+							<td class="d"><%= resp.arr[3][i] %></td>
+							<td class="e"><%= resp.arr[4][i] %></td>
+							<td class="f"><%= resp.arr[5][i] %></td>
+							<td></td>
+						</tr>
+					<%}%>
+						<tr>
+							<td class="cate"><b>Total</b></td>
+							<td class="a"><b><%= resp.brr[0] %></b></td>
+							<td class="b"><b><%= resp.brr[1] %></b></td>
+							<td class="c"><b><%= resp.brr[2] %></b></td>
+							<td class="d"><b><%= resp.brr[3] %></b></td>
+							<td class="e"><b><%= resp.brr[4] %></b></td>
+							<td class="f"><b><%= resp.brr[5] %></b></td>
+							<td></td>
+						</tr>
+				</tbody>
+		  </table>
+		<p style="text-align: right; padding: 10px 0;">*El resultado total no contempla la autoevaluación</p>
+	
+		
+		<center><h3 style="text-align: center;"><b>NIVEL DE DESARROLLO DE COMPETENCIA</b></h3>
+		<img style="width: 80%" src="/images/escala.png"></center>
+	</section>
+	
+<%for (let i = 0; i < quest.categoria.length; i++) {%>
+	<section>
+		<h3 style="text-align: center;">RESULTADOS DETALLADOS POR COMPETENCIA</h2>
+		<h3 style="text-align: center;"><%=quest.categoria[i]%></h3>
+		<table style="width: 100%;">
+			<tr>
+				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner"><%=resp.arr[5][i]%>%</div></div></td>
+				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner">00.00%</div></div></td>
+			</tr>
+			<tr>
+				<td style="text-align: center; padding: 20px 0;">Resultado</td>
+				<td style="text-align: center; padding: 20px 0;">Resultado empleados <br>del mismo nivel</td>
+			</tr>
+		  </table>
+		<h3><b>Resumen por tipo de evaluadores</b></h3>
+		<div class="jumbotron" style="margin-top: 10px">
+			<canvas id="myChart<%=i%>" width="400" height="400"></canvas>
+		</div>
+		<center><img style="width: 80%" src="/images/escala.png"></center>
+	</section>
+<%}%>
+	
+	
+	
+	</div>
+
+
+<script>
+const as = document.querySelectorAll(".a")
+const bs = document.querySelectorAll(".b");
+const cs = document.querySelectorAll(".c");
+const ds = document.querySelectorAll(".d");
+const es = document.querySelectorAll(".e");
+const fs = document.querySelectorAll(".f");
+const preg = document.querySelectorAll(".cate");
+	
+function verC(valor){
+	const rojo = 'rgba(255, 0, 0, 0.8)', amarillo = 'rgba(255, 255, 0, 0.8)', verde = 'rgba(112, 173, 71, 0.8)', azul = 'rgba(0, 176, 240, 0.8)';
+	
+	if(valor>=90.01) return azul;
+	if(valor>=70.01) return verde;
+	if(valor>=60.01) return amarillo;
+	return rojo;
+	
+}
+
+const n = document.querySelectorAll("canvas");
+for (let i = 0; i < n.length; i++) {
+	
+let ctx = n[i].getContext('2d');
+//let valC= [parseFloat(as[0].innerHTML),parseFloat(bs[0].innerHTML),parseFloat(cs[0].innerHTML),parseFloat(ds[0].innerHTML),parseFloat(es[0].innerHTML),parseFloat(fs[0].innerHTML)];
+let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Autoevaluación', 'Jefe', 'Colega', 'Colaborador', 'RESULTADOS'],
+        datasets: [{
+            data: [parseFloat(as[i].innerHTML), parseFloat(bs[i].innerHTML), parseFloat(cs[i].innerHTML), parseFloat(ds[i].innerHTML), parseFloat(fs[i].innerHTML), parseFloat(es[i].innerHTML)],
+            backgroundColor: [
+                verC(as[0].innerHTML),
+                verC(bs[0].innerHTML),
+                verC(cs[0].innerHTML),
+                verC(ds[0].innerHTML),
+                verC(fs[0].innerHTML)
+            ],
+			barThickness: 80
+        }]
+    },
+    options: {
+		maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+				max: 100
+            }
+        },
+		plugins: {
+            title: {
+                display: true,
+                text: preg[i].innerHTML,
+                padding: {
+                    top: 10,
+                    bottom: 30
+                },
+				font: {
+					size: 30
+				}
+            },
+			legend: {
+			  display: false
+			}
+        }
+    }
+});
+	
+}
+
+</script>
+
+	</body>
+<%- include('../partials/footer')%>

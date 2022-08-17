@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="Proyecto de Desarollo">
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>RCForms</title>
+		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+		<link rel="stylesheet" href="/css/app.css">
+		<!-- 	Bootstrap	 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+			  
+			<div class="navbar-header">
+			 <img src="/images/logoRC.png" alt="Page Icon" width="25" height="25" style="margin: 12px;">
+			</div>
+			  <div class="navbar-header">
+			  <a class="navbar-brand" href="/">SomosRC - Forms</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<%if (vsession.user!=undefined){%>
+			  <li><a href="/tandas">Tandas</a></li>
+			 <li><a href="/tandas/all">Todos los Evaluadores</a></li>
+				<%for (let e=0;e<vsession.itandas.length;e++) {%>
+						<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#"><%=vsession.ntandas[e]%>
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						  <li><a href="/evaluados/<%= vsession.itandas[e] %>">Evaluados</a></li>
+						  <li><a href="/evaluadores/<%= vsession.itandas[e] %>">Evaluadores</a></li>
+						  <li><a href="/tandas/<%= vsession.itandas[e] %>">Menu</a></li>
+						</ul>
+						</li>
+				<%}%>
+				<%}%>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<%if (vsession.user==undefined){%>
+				<li style="margin-top: 10px;margin-right: 10px;">
+					<div id="loginf" style="display: flex; gap: 5px; align-items: baseline;">
+						<span style="color: white;" class="glyphicon glyphicon-log-in"></span>
+						<form style="flex-direction: row; gap: 5px;" action="/sign" method="post">
+								<input type="text" name="user" id="user" placeholder="User">
+								<input type="password" name="password" id="password" placeholder="Contraseña">
+							<button style="height: 31px;" class="btn btn-primary">LogIn</button>
+						</form>
+					</div>
+				</li>
+				<%} else {%>
+			  <li><a href="#">Usuario: <%=vsession.user%></a></li>
+				<li><a style="color: #a39dff;" href="/logout">LogOut</a></li>
+				<%}%>
+			</ul>
+		  </div>
+		</nav>
