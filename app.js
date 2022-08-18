@@ -6,9 +6,17 @@ const methodOverride = require('method-override');
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const flash = require('connect-flash');
+const { MongoStore } = require('connect-mongo');
+const MongoDBStore = require('connect-mongo')(session);
 
 //session
+const store = new MongoStore ({
+	url: "mongodb+srv://gadmin:gz695VWqzWeSnSxr@cluster0.d74y6.mongodb.net/?retryWrites=true&w=majority",
+	secret: 'secretkey',
+	touchAfter: 24*60*60;
+})
 const sessionConfig = {
+	store,
 	name: "session",
 	secret: 'secretkey',
 	resave: false,
