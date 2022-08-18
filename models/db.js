@@ -15,7 +15,7 @@ const dbConfig = require("../config/db.config.js");
 //   console.log("Successfully connected to the database.");
 // });
 
-const connection = mongoose.connect(dbConfig.LINK)
+const connection = mongoose.connect(dbConfig.LINKM)
 	.then(()=>{
 	console.log("Successfully connected to the database.");
 })
