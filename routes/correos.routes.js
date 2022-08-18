@@ -23,7 +23,7 @@ module.exports = app => {
 	// Send All
   router.post("/:idt", async(req, res)=>{
 	  const idt = req.params.idt;
-	  const data = await Evaluadore.find({idt:idt,"semando": "false","contesto":"false"}).limit(1);
+	  const data = await Evaluadore.find({idt:idt,"semando": "false","contesto":"false"}).limit(5);
 	  const messageHTML = await Pregunta.findOne({idt:idt});
 	  var j=0;
 	  var time=1000;
@@ -40,12 +40,12 @@ module.exports = app => {
 			}
 			var realmessage = messageHTML.message;
 			var realmessage = realmessage.replace("|nombre|",e.nombre);
-			var realmessage = realmessage.replace("|link|","<a href='https://rcforms.herokuapp.com/form/"+e._id+"'>https://rcforms.run-us-west2.goorm.io/form/"+e._id+"</a>");
+			var realmessage = realmessage.replace("|link|","<a href='https://rcforms.herokuapp.com/form/"+e._id+"'>https://rcforms.herokuapp.com/form/"+e._id+"</a>");
 			var realmessage = realmessage.replace("|evaluadores|",string);
 
 				var mailOptions = {
 					from: 'RCForms <aariza@lcred.org>', // sender address (who sends)
-					to: "gasalandra@lcred.org", // list of receivers (who receives) e.correo
+					to: e.correo, // list of receivers (who receives) e.correo
 					subject: 'Evaluación 360° - '+messageHTML.messageS+" - "+e.nombre, // Subject line
 					text: 'Evaluación 360°', // plaintext body
 					html: realmessage
