@@ -11,14 +11,14 @@ const MongoStore = require('connect-mongo');
 
 // // session
 const store = MongoStore.create({
-	mongoUrl: "mongodb+srv://gadmin:gz695VWqzWeSnSxr@cluster0.d74y6.mongodb.net/evaluaciones?retryWrites=true&w=majority",
-	secret: 'secretkey',
+	mongoUrl: process.env.MONGOURL,
+	secret: process.env.secretkey,
 	touchAfter: 24*60*60
 })
 const sessionConfig = {
 	store,
 	name: "session",
-	secret: 'secretkey',
+	secret: process.env.secretkey,
 	resave: false,
 	saveUninitialized: false,
 	cookie: {

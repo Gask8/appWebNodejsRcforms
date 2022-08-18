@@ -7,14 +7,14 @@
 			<% if(succes && succes.length) {%>
 			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
 			<%}%>
-			
+
 			<a href="/evaluadores/<%= idt %>" class="btn btn-info btn-lg" style="width:100%">Regreso</a>
-			
+
 		  <h2>Evaluadores Forms</h2>
-		  <p>Buscar por ID o mas cosas: </p>  
+		  <p>Buscar por ID o mas cosas: </p>
 		  <input class="form-control" id="myInput" type="text" placeholder="Search..">
 		  <br>
-			
+
 		  <table class="table table-bordered table-striped">
 			<thead>
 			  <tr>
@@ -31,7 +31,7 @@
 					<tr>
 						<td><%= j %></td>
 						<td><%= element.nombre %></td>
-						<td><a href="https://rcforms.run-us-west2.goorm.io/form/<%= element._id %>">https://rcforms.run-us-west2.goorm.io/form/<%= element._id %></a></td>
+						<td><a href="https://rcforms.herokuapp.com/form/<%= element._id %>">https://rcforms.run-us-west2.goorm.io/form/<%= element._id %></a></td>
 						<!-- <td><a href="/form/<%= //element._id %>" class="btn btn-info">Form</a></td> -->
 						<td><%= element.correo %></td>
 						<td class="text-center"><% if (element.contesto) {%>Ya <span style="color:#2b9dff;" class="glyphicon glyphicon-asterisk"></span><%} else if(element.semando){%>Si <span style="color:#2ac32a;" class="glyphicon glyphicon-ok"></span><% } else { %>No <span style="color:#ff6161;" class="glyphicon glyphicon-remove"></span><%}%></td>
@@ -39,7 +39,7 @@
 				<%j++;}%>
 			</tbody>
 		  </table>
-			
+
 			<form method="POST" action="/correos/<%= idt %>" onsubmit="return confirm('En serio quieres mandar correos?');">
 				<button style="background-color: #003d70" class="btn btn-primary btn-lg">Mandar Correos</button>
 			</form>
@@ -51,4 +51,4 @@
 
 		<script src="/js/general.js"></script>
 	</body>
-<%- include('../partials/footer')%>	
+<%- include('../partials/footer')%>

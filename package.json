@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://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@github.com/Gask8/RCForms.git"
+    "url": "git+https://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@github.com/Gask8/rcforms.git"
   },
   "keywords": [],
   "author": "Gabriel Salandra",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Gask8/RCForms/issues"
+    "url": "https://github.com/Gask8/rcforms/issues"
   },
-  "homepage": "https://github.com/Gask8/RCForms#readme",
+  "homepage": "https://github.com/Gask8/rcforms#readme",
   "dependencies": {
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.6.0",
