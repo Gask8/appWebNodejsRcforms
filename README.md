@@ -1,2 +1,2 @@
 # rcforms
-Recuersos Humanos System
+Recursos Humanos System
