@@ -144,11 +144,11 @@
 								<% let x =(sumt/conft).toFixed(2); sums[3]+=parseFloat(x)%><%= x %><input name="arr[3][<%=i%>]" type="hidden" value="<%= x %>">
 								<%}else{%>N/A<input name="arr[3][<%=i%>]" type="hidden"><%}%></td>
 							
-							<td><%if(queson.includes("Autoevaluación")&&queson.length>1){ let sumt=0, conft=0; for(let j=1; j<quienes.length;j++){ let y = avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(y!=0){sumt+=y;conft++}}%>
+							<td><%if(queson.includes("Autoevaluación")&&queson.length>1){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ let y = avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(y!=0){sumt+=y;conft++}}%>
 								<% let x =(sumt/conft).toFixed(2); sums[4]+=parseFloat(x)%><%= x %><input name="arr[4][<%=i%>]" type="hidden" value="<%= x %>">
 								<%}else{%>N/A<input name="arr[4][<%=i%>]" type="hidden"><%}%></td>
 							
-							<td><%if(queson.length>1){ let sumt=0, conft=0; for(let j=0; j<quienes.length;j++){ let y=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(y!=0){sumt+=y;conft++}}%>
+							<td><%if(queson.length>1){ let sumt=0, conft=0; for(let j=1; j<quienes.length;j++){ let y=avg(data.evaluadores[quienes[j]].respuestas,quest.cati[i],quest.cati[i+1]); if(y!=0){sumt+=y;conft++}}%>
 								<% let x =(sumt/conft).toFixed(2); sums[5]+=parseFloat(x)%><%= x %><input name="arr[5][<%=i%>]" type="hidden" value="<%= x %>">
 								<%}else{%>N/A<input name="arr[5][<%=i%>]" type="hidden"><%}%></td>
 						</tr>

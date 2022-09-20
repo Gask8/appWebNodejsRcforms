@@ -3,23 +3,88 @@
 <style>
 	body{background: white !important;}
 	
+	.sqr-green{
+		border-color: #507E31 !important;
+    	background: #70AD47;
+	}
+	.sqr-green .inner{
+	    border-color: #507E32;
+	    color: #70AD47;
+	}
+	.sqr-blue{
+		border-color: #313e7e !important;
+    	background: #00B0F0;
+	}
+	.sqr-blue .inner{
+	    border-color: #313e7e;
+	    color: #00B0F0;
+	}
+	.sqr-yellow{
+		border-color: #b7bf3e !important;
+    	background: #FFFF00;
+	}
+	.sqr-yellow .inner{
+	    border-color: #b7bf3e;
+		color: #FCD641;
+	}
+	.sqr-red{
+		border-color: #7e3131 !important;
+    	background: #FF0000;
+	}
+	.sqr-red .inner{
+	    border-color: #7e3131;
+	    color: #FF0000;
+	}
+	
 	 @media print {
       h1, h2 {
         color: #ffffff !important;
       }
+	.inner{
+		background: white !important;
+	}
+	.sqr-green .inner{
+	    color: #70AD47 !important;
+	}
+	.sqr-green{
+    	background: #70AD47 !important;
+	}
+	.sqr-blue{
+    	background: #00B0F0 !important;
+	}
+	.sqr-blue .inner{
+	    color: #00B0F0 !important;
+	}
+	.sqr-yellow{
+    	background: #FFFF00 !important;
+	}
+	.sqr-yellow .inner{
+		color: #FCD641 !important;
+	}
+	.sqr-red{
+    	background: #FF0000 !important;
+	}
+	.sqr-red .inner{
+	    color: #FF0000 !important;
+	}
+	 .th-comp{
+			background-color: #FF0000 !important;
+			
+			font-size: 1.8rem !important;
+			text-align: center !important;
+	 }
 		 
    }
 	
 		.cover{
 			width: 200px;
 			height: 200px;
-			border: 5px solid #507E32;
-			background: #70AD47;
+			border: 5px solid;
 			margin: auto;
 			padding-top: 20px;
 		 }
 		 .inner{
-			border: 5px solid #507E32;
+			border: 5px solid;
 			background: white;
 			width: 150px;
 			height: 150px;
@@ -27,7 +92,6 @@
 			text-align: center;
 			font-size: 30px;
 			font-weight: bold;
-			color: #70AD47;
 			padding-top: 50px;
 		 }
 	section{
@@ -35,6 +99,13 @@
 	}
 </style>
 
+<% function verCH(valor){
+	if(valor>=90.01) return "sqr-blue";
+	if(valor>=70.01) return "sqr-green";
+	if(valor>=60.01) return "sqr-yellow";
+	return "sqr-red";
+	
+}%>
 
 <section>
 <img style="width: 100%" src="/images/coverReport.png">
@@ -48,10 +119,10 @@
 <div class="container" style="margin-top: 700px">
 	
 	<section>
-	 <table class="table table-bordered table-striped">
+	 <table class="table table-bordered table-striped" style="margin-top: 50%;">
 			<thead>
 			  <tr>
-				<th colspan="2">TABLA DE DEFINICIÓN DE COMPETENCIAS</th>
+				<th colspan="2" class="th-comp">TABLA DE DEFINICIÓN DE COMPETENCIAS</th>
 			  </tr>
 			</thead>
 			<tbody id="myTable">
@@ -111,7 +182,7 @@
 		<h3 style="text-align: center; margin-top: 20px"><b>RESULTADO GLOBAL EVALUACIÓN DE COMPETENCIAS</b></h3>
 		<table style="width: 100%;">
 			<tr>
-				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner"><%=resp.brr[5]%>%</div></div></td>
+				<td style="width: 50%; padding: 20px 0;"><div class="<%=verCH(resp.brr[5])%> cover"><div class="inner"><%=resp.brr[5]%>%</div></div></td>
 				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner">00.00%</div></div></td>
 			</tr>
 			<tr>
@@ -165,13 +236,15 @@
 		<img style="width: 80%" src="/images/escala.png"></center>
 	</section>
 	
+	<% let qalto = resp.alto.split(",").map(Number) %>
+	<% let qbajo = resp.bajo.split(",").map(Number) %>
 <%for (let i = 0; i < quest.categoria.length; i++) {%>
 	<section>
 		<h3 style="text-align: center;">RESULTADOS DETALLADOS POR COMPETENCIA</h2>
 		<h3 style="text-align: center;"><%=quest.categoria[i]%></h3>
 		<table style="width: 100%;">
 			<tr>
-				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner"><%=resp.arr[5][i]%>%</div></div></td>
+				<td style="width: 50%; padding: 20px 0;"><div class="<%=verCH(resp.arr[5][i])%> cover"><div class="inner"><%=resp.arr[5][i]%>%</div></div></td>
 				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner">00.00%</div></div></td>
 			</tr>
 			<tr>
@@ -184,6 +257,11 @@
 			<canvas id="myChart<%=i%>" width="400" height="400"></canvas>
 		</div>
 		<center><img style="width: 80%" src="/images/escala.png"></center>
+		<h4>COMPORTAMIENTOS SOBRESALIENTES O POR TRABAJAR  </h4>
+		<%for (let j = quest.cati[i]; j < quest.cati[i+1]; j++) {%>
+			<% if(qalto.includes(j)){%><%=quest.preg[j]%><%}%>
+			<% if(qbajo.includes(j)){%><%=quest.preg[j]%><%}%>
+		<%}%>
 	</section>
 <%}%>
 	
@@ -219,15 +297,15 @@ let ctx = n[i].getContext('2d');
 let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Autoevaluación', 'Jefe', 'Colega', 'Colaborador', 'RESULTADOS'],
+        labels: ['Autoevaluación - '+as[i].innerHTML, 'Jefe - '+bs[i].innerHTML, 'Colega - '+cs[i].innerHTML, 'Colaborador - '+ds[i].innerHTML, 'RESULTADOS - '+fs[i].innerHTML],
         datasets: [{
             data: [parseFloat(as[i].innerHTML), parseFloat(bs[i].innerHTML), parseFloat(cs[i].innerHTML), parseFloat(ds[i].innerHTML), parseFloat(fs[i].innerHTML), parseFloat(es[i].innerHTML)],
             backgroundColor: [
-                verC(as[0].innerHTML),
-                verC(bs[0].innerHTML),
-                verC(cs[0].innerHTML),
-                verC(ds[0].innerHTML),
-                verC(fs[0].innerHTML)
+                verC(as[i].innerHTML),
+                verC(bs[i].innerHTML),
+                verC(cs[i].innerHTML),
+                verC(ds[i].innerHTML),
+                verC(fs[i].innerHTML)
             ],
 			barThickness: 80
         }]
