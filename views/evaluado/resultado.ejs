@@ -195,10 +195,11 @@
 				<hr>
 				<p><b>Comentarios para: <%=data.nombre%></b></p>
 				<ol>
-				<%for (let j = 0; j < quienes.length; j++) {%>
+				<%let comments = []; for (let j = 0; j < quienes.length; j++) { comments.push(data.evaluadores[quienes[j]].comentarios); %>
 				<li><%=data.evaluadores[quienes[j]].comentarios%></li>
 				<%}%>
 				</ol>
+				<input name="comments" type="hidden" value="<%= comments %>">
 				<hr>
 			</div>
 			
