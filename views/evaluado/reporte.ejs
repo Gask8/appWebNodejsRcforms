@@ -316,7 +316,17 @@
 		<%}%>
 	</section>
 <%}%>
-	
+	<section>
+		<h3 style="text-align: center; color: white !important;">-</h3>
+		<h3 style="text-align: center; margin-top: 20px"><b>COMENTARIOS DE LOS EVALUADORES</b></h3>
+		<div style="background-color: #eeeeee !important; padding: 50px !important">
+			<ol>
+				<%let coms = resp.comments.split("|,"); for (let j = 0; j < coms.length; j++) { %>
+				<li style="font-size: 1.2em"><%=coms[j]%></li>
+				<%}%>
+			</ol>
+		</div>
+	</section>
 	</div>
 
 

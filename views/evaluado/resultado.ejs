@@ -195,11 +195,11 @@
 				<hr>
 				<p><b>Comentarios para: <%=data.nombre%></b></p>
 				<ol>
-				<%let comments = []; for (let j = 0; j < quienes.length; j++) { comments.push(data.evaluadores[quienes[j]].comentarios); %>
-				<li><%=data.evaluadores[quienes[j]].comentarios%></li>
+				<%let comments = []; for (let j = 0; j < quienes.length; j++) { let c = data.evaluadores[quienes[j]].comentarios; if(c!==null)if(c.length>5) comments.push(c+"|"); %>
+				<% if(c!==null) if(c.length>5) {%><li><%=c%></li><%}%>
 				<%}%>
 				</ol>
-				<input name="comments" type="hidden" value="<%= comments %>">
+				<input name="comments"  type="hidden" value="<%= comments %>">
 				<hr>
 			</div>
 			
