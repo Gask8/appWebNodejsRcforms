@@ -40,7 +40,7 @@ module.exports = app => {
 			}
 			var realmessage = messageHTML.message;
 			var realmessage = realmessage.replace("|nombre|",e.nombre);
-			var realmessage = realmessage.replace("|link|","<a href='https://rcforms.herokuapp.com/form/"+e._id+"'>https://rcforms.herokuapp.com/form/"+e._id+"</a>");
+			var realmessage = realmessage.replace("|link|","<a href='"+process.env.DOMAIN+"/form/"+e._id+"'>"process.env.DOMAIN"/form/"+e._id+"</a>");
 			var realmessage = realmessage.replace("|evaluadores|",string);
 
 				var mailOptions = {

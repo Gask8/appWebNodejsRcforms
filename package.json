@@ -1,11 +1,11 @@
 {
   "name": "rcforms",
   "version": "1.0.0",
-  "description": "RcForms for Survays",
+  "description": "Sistema de Recursos Humanos",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+	  "start": "node app.js"
   },
   "repository": {
     "type": "git",

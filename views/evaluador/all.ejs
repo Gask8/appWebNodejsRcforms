@@ -47,7 +47,7 @@
 			<form style="align-items: flex-end;" method="POST" action="/evaluadores/<%= idt %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar todo?');">
 				<button class="btn btn-danger long">Borrar Todo</button>
 			</form>
-			<form method="POST" action="/evaluadores/<%= idt %>/cruz">
+			<form method="POST" action="/evaluadores/<%= idt %>/cruz" onsubmit="return confirm('Quieres Cruzar?');">
 				<button class="btn btn-primary btn-lg">Cruzar</button>
 			</form>
 			

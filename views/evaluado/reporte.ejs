@@ -3,38 +3,159 @@
 <style>
 	body{background: white !important;}
 	
-	 @media print {
-      h1, h2 {
-        color: #ffffff !important;
-      }
-		 
+	.sqr-green{
+		border-color: #507E31 !important;
+    	background: #70AD47;
+	}
+	.sqr-green .inner{
+	    border-color: #507E32;
+	    color: #70AD47;
+	}
+	.sqr-blue{
+		border-color: #313e7e !important;
+    	background: #00B0F0;
+	}
+	.sqr-blue .inner{
+	    border-color: #313e7e;
+	    color: #00B0F0;
+	}
+	.sqr-yellow{
+		border-color: #b7bf3e !important;
+    	background: #FFFF00;
+	}
+	.sqr-yellow .inner{
+	    border-color: #b7bf3e;
+		color: #FCD641;
+	}
+	.sqr-red{
+		border-color: #7e3131 !important;
+    	background: #FF0000;
+	}
+	.sqr-red .inner{
+	    border-color: #7e3131;
+	    color: #FF0000;
+	}
+	
+	@media print {
+		h1, h2 {
+			color: #ffffff !important;
+		}
+		.inner{
+			background: white !important;
+		}
+		.sqr-green .inner{
+			color: #70AD47 !important;
+		}
+		.sqr-green{
+			background: #70AD47 !important;
+		}
+		.sqr-blue{
+			background: #00B0F0 !important;
+		}
+		.sqr-blue .inner{
+			color: #00B0F0 !important;
+		}
+		.sqr-yellow{
+			background: #FFFF00 !important;
+		}
+		.sqr-yellow .inner{
+			color: #FCD641 !important;
+		}
+		.sqr-red{
+			background: #FF0000 !important;
+		}
+		.sqr-red .inner{
+			color: #FF0000 !important;
+		}
+		.th-comp{
+			font-size: 1.8rem !important;
+			text-align: center !important;
+			width: 100%;
+			background-color: black !important;
+			color: white !important;
+			padding: 10px !important;
+		}
+		.n_p{
+			padding: 0 !important;
+		}
+		.td2, .td1, .td3{
+			width: 100% !important;
+			padding: 10px !important;
+			font-size: 1.2em !important;
+		}
+		#myTable .td2, .td1{
+			height: 100px !important;
+		}
+		.td2{
+			background-color: #EEEEEE !important;
+		}
+		.td3{
+			background-color: #EEEEEE !important;
+			height: 40px !important;
+			text-align: center !important;
+		}
+		#myTable td {
+			padding: 0 !important;
+			width: 50% !important;
+			border: none !important;
+		}
+		/*Segunda Tabla*/
+		#myTable2 td {
+			padding: 0 !important;
+			width: 12% !important;
+			border: none !important;
+			text-align: center !important;
+		}
+		.th-nb{
+			border: none !important;
+		}
+		.th-comp2{
+			font-size: 1.3rem !important;
+			text-align: center !important;
+			width: 100%;
+			height: 80px !important;
+			background-color: black !important;
+			color: white !important;
+			padding: 10px !important;
+			margin: auto 0 !important;
+		}
+		#myTable2 .tdd0{
+			background-color: #EEEEEE !important;
+		}
+		#myTable2 .tdd0, #myTable2 .tdd1{
+			height: 45px !important;
+		}
    }
 	
-		.cover{
-			width: 200px;
-			height: 200px;
-			border: 5px solid #507E32;
-			background: #70AD47;
-			margin: auto;
-			padding-top: 20px;
-		 }
-		 .inner{
-			border: 5px solid #507E32;
-			background: white;
-			width: 150px;
-			height: 150px;
-			margin: auto;
-			text-align: center;
-			font-size: 30px;
-			font-weight: bold;
-			color: #70AD47;
-			padding-top: 50px;
-		 }
+	.cover{
+		width: 200px;
+		height: 200px;
+		border: 5px solid;
+		margin: auto;
+		padding-top: 20px;
+	}
+	.inner{
+		border: 5px solid;
+		background: white;
+		width: 150px;
+		height: 150px;
+		margin: auto;
+		text-align: center;
+		font-size: 30px;
+		font-weight: bold;
+		padding-top: 50px;
+	}
 	section{
 		height: 1375px;
 	}
 </style>
 
+<% function verCH(valor){
+	if(valor>=90.01) return "sqr-blue";
+	if(valor>=70.01) return "sqr-green";
+	if(valor>=60.01) return "sqr-yellow";
+	return "sqr-red";
+}%>
 
 <section>
 <img style="width: 100%" src="/images/coverReport.png">
@@ -48,113 +169,113 @@
 <div class="container" style="margin-top: 700px">
 	
 	<section>
-	 <table class="table table-bordered table-striped">
+	 <table class="table table-bordered table-striped" style="margin-top: 50%;">
 			<thead>
 			  <tr>
-				<th colspan="2">TABLA DE DEFINICIÓN DE COMPETENCIAS</th>
+				  <th colspan="2" class="n_p"><div class="th-comp">TABLA DE DEFINICIÓN DE COMPETENCIAS</div></th>
 			  </tr>
 			</thead>
 			<tbody id="myTable">
 				<tr>
-					<td>COMPETENCIA</td>
-					<td>DESCRIPCIÓN</td>
+					<td><div class="td3"><b style="color: #66AAC4 !important;">COMPETENCIA</b></div></td>
+					<td><div class="td3"><b style="color: #66AAC4 !important;">DESCRIPCIÓN</b></div></td>
 				</tr>
 				<tr>
-					<td>Comprensión</td>
-					<td>Capacidad de percibir y analizar delante de quién y de qué se encuentra, para decidir y actuar de forma adecuada.</td>
+					<td><div class="td1"><b>Comprensión</b></div></td>
+					<td><div class="td1">Capacidad de percibir y analizar delante de quién y de qué se encuentra, para decidir y actuar de forma adecuada.</div></td>
 				</tr>
 				<tr>
-					<td>Comunicación</td>
-					<td>Capacidad de persuadir a sus interlocutores de acuerdo con el objetivo deseado, mediante el envío de mensajes claros a las personas correctas a través de medios efectivos. Al mismo tiempo posee la habilidad para escuchar efectivamente a los demás y ser sensible con sus circunstancias.</td>
+					<td><div class="td2" style="height: 140px !important"><b>Comunicación</b></div></td>
+					<td><div class="td2" style="height: 140px !important">Capacidad de persuadir a sus interlocutores de acuerdo con el objetivo deseado, mediante el envío de mensajes claros a las personas correctas a través de medios efectivos. Al mismo tiempo posee la habilidad para escuchar efectivamente a los demás y ser sensible con sus circunstancias.</div></td>
 				</tr>
 				<tr>
-					<td>Desarrollo, atención y formación de otros</td>
-					<td>Capacidad de desarrollar, acompañar y formar a cada persona para que alcance su plenitud como ser humano y cristiano. </td>
+					<td><div class="td1"><b>Desarrollo, Atención y Formación de Otros</b></div></td>
+					<td><div class="td1">Capacidad de desarrollar, acompañar y formar a cada persona para que alcance su plenitud como ser humano y cristiano.</div></td>
 				</tr>
 				<tr>
-					<td>Formación</td>
-					<td>Capacidad y compromiso personal por adquirir o mejorar sus conocimientos y habilidades por diferentes medios.</td>
+					<td><div class="td2"><b>Formación</b></div></td>
+					<td><div class="td2">Capacidad y compromiso personal por adquirir o mejorar sus conocimientos y habilidades por diferentes medios.</div></td>
 				</tr>
 				<tr>
-					<td>Inteligencia emocional</td>
-					<td>Capacidad de estar en sintonía con las propias emociones para saber expresarlas de manera apropiada, así como comprender las emociones de los demás.</td>
+					<td><div class="td1"><b>Inteligencia Emocional</b></div></td>
+					<td><div class="td1">Capacidad de estar en sintonía con las propias emociones para saber expresarlas de manera apropiada, así como comprender las emociones de los demás.</div></td>
 				</tr>
 				<tr>
-					<td>Interrelaciones</td>
-					<td>Capacidad de relacionarse con las personas en un ambiente de confianza que favorezca que se sientan comprendidas.</td>
+					<td><div class="td2"><b>Interrelaciones</b></div></td>
+					<td><div class="td2">Capacidad de relacionarse con las personas en un ambiente de confianza que favorezca que se sientan comprendidas.</div></td>
 				</tr>
 				<tr>
-					<td>Liderazgo</td>
-					<td>Orientar la acción de las personas y de los grupos de trabajo en una dirección determinada para el cumplimiento de objetivos.</td>
+					<td><div class="td1"><b>Liderazgo</b></div></td>
+					<td><div class="td1">Orientar la acción de las personas y de los grupos de trabajo en una dirección determinada para el cumplimiento de objetivos.</div></td>
 				</tr>
 				<tr>
-					<td>Planeación y organización</td>
-					<td>Capacidad de planear con claridad para lograr los objetivos, transmitiendo la visión dando seguimiento y resolviendo los obstáculos que se presenten en su ejecución.</td>
+					<td><div class="td2"><b>Planeación y Organización</b></div></td>
+					<td><div class="td2">Capacidad de planear con claridad para lograr los objetivos, transmitiendo la visión dando seguimiento y resolviendo los obstáculos que se presenten en su ejecución.</div></td>
 				</tr>
 				<tr>
-					<td>Sentido Emprendedor </td>
-					<td>Proponer soluciones nuevas y alternativas ante los retos en el trabajo.</td>
+					<td><div class="td1"><b>Sentido Emprendedor</b></div></td>
+					<td><div class="td1">Proponer soluciones nuevas y alternativas ante los retos en el trabajo.</div></td>
 				</tr>
 				<tr>
-					<td>Solución de problemas y toma de decisiones</td>
-					<td>Capacidad de resolver los problemas de la vida diaria de manera eficaz, flexible y creativa.</td>
+					<td><div class="td2"><b>Solución de Problemas y Toma de Decisiones</b></div></td>
+					<td><div class="td2">Capacidad de resolver los problemas de la vida diaria de manera eficaz, flexible y creativa.</div></td>
 				</tr>
 				<tr>
-					<td>Trabajo en equipo</td>
-					<td>Capacidad de cooperar y colaborar con los demás miembros del equipo</td>
+					<td><div class="td1"><b>Trabajo en Equipo</b></div></td>
+					<td><div class="td1">Capacidad de cooperar y colaborar con los demás miembros del equipo</div></td>
 				</tr>
 			</tbody>
 		  </table>
 	</section>
 	
 	<section>
+		<h3 style="text-align: center; color: white !important;">-</h3>
 		<h3 style="text-align: center; margin-top: 20px"><b>RESULTADO GLOBAL EVALUACIÓN DE COMPETENCIAS</b></h3>
 		<table style="width: 100%;">
 			<tr>
-				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner"><%=resp.brr[5]%>%</div></div></td>
-				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner">00.00%</div></div></td>
+				<td style="width: 50%; padding: 20px 0;"><div class="<%=verCH(resp.brr[5])%> cover"><div class="inner"><%=resp.brr[5]%>%</div></div></td>
+				<td style="width: 50%; padding: 20px 0;"><div class="cover sqroc"><div class="inner">00.00%</div></div></td>
 			</tr>
 			<tr>
 				<td style="text-align: center; padding: 20px 0;">Resultado Total*</td>
 				<td style="text-align: center; padding: 20px 0;">Resultado empleados <br>del mismo nivel</td>
 			</tr>
 		</table>
-			
 		<table class="table table-bordered table-striped">
 			<thead>
 			  <tr>
-				<th>COMPETENCIA</th>
-				<th>Autoevaluación</th>
-				<th>Jefe</th>
-				<th>Colega</th>
-				<th>Colaborador</th>
-				<th>Resultado con autoevaluación</th>
-				<th>Resultado sin autoevaluación</th>
-				<th>Resultado empleados del mismo nivel</th>
+				<th class="n_p th-nb" style="width: 16% !important;"><div class="th-comp2">COMPETENCIA</div></th>
+				<th class="n_p th-nb"><div class="th-comp2">Autoevaluación</div></th>
+				<th class="n_p th-nb"><div class="th-comp2">Jefe</div></th>
+				<th class="n_p th-nb"><div class="th-comp2">Colega</div></th>
+				<th class="n_p th-nb"><div class="th-comp2">Colaborador</div></th>
+				<th class="n_p th-nb"><div class="th-comp2">Resultado con autoevaluación</div></th>
+				<th class="n_p th-nb"><div class="th-comp2">Resultado sin autoevaluación</div></th>
+				<th class="n_p th-nb"><div class="th-comp2">Resultado empleados del mismo nivel</div></th>
 			</tr>
 			</thead>
-				<tbody>
+				<tbody id="myTable2">
 					<%for (let i = 0; i < quest.categoria.length; i++) {%>
 						<tr>
-							<td class="cate"><%= quest.categoria[i]  %></td>
-							<td class="a"><%= resp.arr[0][i] %></td>
-							<td class="b"><%= resp.arr[1][i] %></td>
-							<td class="c"><%= resp.arr[2][i] %></td>
-							<td class="d"><%= resp.arr[3][i] %></td>
-							<td class="e"><%= resp.arr[4][i] %></td>
-							<td class="f"><%= resp.arr[5][i] %></td>
-							<td></td>
+							<td class="cate"><div class="tdd<%=i%2%>"><%= quest.categoria[i]  %></div></td>
+							<td class="a"><div class="tdd<%=i%2%>"><%= resp.arr[0][i] %></div></td>
+							<td class="b"><div class="tdd<%=i%2%>"><%= resp.arr[1][i] %></div></td>
+							<td class="c"><div class="tdd<%=i%2%>"><%= resp.arr[2][i] %></div></td>
+							<td class="d"><div class="tdd<%=i%2%>"><%= resp.arr[3][i] %></div></td>
+							<td class="e"><div class="tdd<%=i%2%>"><%= resp.arr[4][i] %></div></td>
+							<td class="f"><div class="tdd<%=i%2%>"><%= resp.arr[5][i] %></div></td>
+							<td class="tabt"><div class="tdd<%=i%2%>">-</div></td>
 						</tr>
 					<%}%>
 						<tr>
 							<td class="cate"><b>Total</b></td>
-							<td class="a"><b><%= resp.brr[0] %></b></td>
-							<td class="b"><b><%= resp.brr[1] %></b></td>
-							<td class="c"><b><%= resp.brr[2] %></b></td>
-							<td class="d"><b><%= resp.brr[3] %></b></td>
-							<td class="e"><b><%= resp.brr[4] %></b></td>
-							<td class="f"><b><%= resp.brr[5] %></b></td>
-							<td></td>
+							<td class="a"><div class="tdd3"><b><%= resp.brr[0] %></b></div></td>
+							<td class="b"><div class="tdd3"><b><%= resp.brr[1] %></b></div></td>
+							<td class="c"><div class="tdd3"><b><%= resp.brr[2] %></b></div></td>
+							<td class="d"><div class="tdd3"><b><%= resp.brr[3] %></b></div></td>
+							<td class="e"><div class="tdd3"><b><%= resp.brr[4] %></b></div></td>
+							<td class="f"><div class="tdd3"><b><%= resp.brr[5] %></b></div></td>
+							<td class="tabt" style="font-weight: bold"><div class="tdd3">-</div></td>
 						</tr>
 				</tbody>
 		  </table>
@@ -162,44 +283,61 @@
 	
 		
 		<center><h3 style="text-align: center;"><b>NIVEL DE DESARROLLO DE COMPETENCIA</b></h3>
-		<img style="width: 80%" src="/images/escala.png"></center>
+		<img style="width: 75%" src="/images/escala.png"></center>
 	</section>
-	
+	<% let qalto = resp.alto==""? [null] : resp.alto.split(",").map(Number) %>
+	<% let qbajo = resp.bajo==""? [null] : resp.bajo.split(",").map(Number) %>
 <%for (let i = 0; i < quest.categoria.length; i++) {%>
 	<section>
-		<h3 style="text-align: center;">RESULTADOS DETALLADOS POR COMPETENCIA</h2>
+		<h3 style="text-align: center; color: white !important;">-</h3>
+		<h3 style="text-align: center;">RESULTADOS DETALLADOS POR COMPETENCIA</h3>
 		<h3 style="text-align: center;"><%=quest.categoria[i]%></h3>
 		<table style="width: 100%;">
 			<tr>
-				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner"><%=resp.arr[5][i]%>%</div></div></td>
-				<td style="width: 50%; padding: 20px 0;"><div class="cover"><div class="inner">00.00%</div></div></td>
+				<td style="width: 50%; padding: 20px 0;"><div class="<%=verCH(resp.arr[5][i])%> cover"><div class="inner"><%=resp.arr[5][i]%>%</div></div></td>
+				<td style="width: 50%; padding: 20px 0;"><div class="cover sqroc"><div class="inner">00.00%</div></div></td>
 			</tr>
 			<tr>
 				<td style="text-align: center; padding: 20px 0;">Resultado</td>
 				<td style="text-align: center; padding: 20px 0;">Resultado empleados <br>del mismo nivel</td>
 			</tr>
 		  </table>
-		<h3><b>Resumen por tipo de evaluadores</b></h3>
 		<div class="jumbotron" style="margin-top: 10px">
 			<canvas id="myChart<%=i%>" width="400" height="400"></canvas>
 		</div>
-		<center><img style="width: 80%" src="/images/escala.png"></center>
+		<center><img style="width: 75%" src="/images/escala.png"></center>
+		<h3 style="color: white !important;">-</h3>
+		<h4>COMPORTAMIENTOS <span style="background: #00B0F0 !important;">SOBRESALIENTES</span> O POR <span style="background: #FFFF00 !important;">TRABAJAR</span></h4>
+		<%for (let j = quest.cati[i]; j < quest.cati[i+1]; j++) {%>
+			<% if(qalto.includes(j)){%><p><span style="background: #00B0F0 !important;"><%=quest.preg[j]%></span></p><%}%>
+		<%}%>
+		<%for (let j = quest.cati[i]; j < quest.cati[i+1]; j++) {%>
+			<% if(qbajo.includes(j)){%><p><span style="background: #FFFF00 !important;"><%=quest.preg[j]%></span></p><%}%>
+		<%}%>
 	</section>
 <%}%>
-	
-	
-	
+	<section>
+		<h3 style="text-align: center; color: white !important;">-</h3>
+		<h3 style="text-align: center; margin-top: 20px"><b>COMENTARIOS DE LOS EVALUADORES</b></h3>
+		<div style="background-color: #eeeeee !important; padding: 50px !important">
+			<ol>
+				<%let coms = resp.comments.split("|,"); for (let j = 0; j < coms.length; j++) { %>
+				<li style="font-size: 1.2em"><%=coms[j]%></li>
+				<%}%>
+			</ol>
+		</div>
+	</section>
 	</div>
 
 
 <script>
-const as = document.querySelectorAll(".a")
-const bs = document.querySelectorAll(".b");
-const cs = document.querySelectorAll(".c");
-const ds = document.querySelectorAll(".d");
-const es = document.querySelectorAll(".e");
-const fs = document.querySelectorAll(".f");
-const preg = document.querySelectorAll(".cate");
+const as = document.querySelectorAll(".a div")
+const bs = document.querySelectorAll(".b div");
+const cs = document.querySelectorAll(".c div");
+const ds = document.querySelectorAll(".d div");
+const es = document.querySelectorAll(".e div");
+const fs = document.querySelectorAll(".f div");
+const preg = document.querySelectorAll(".cate div");
 	
 function verC(valor){
 	const rojo = 'rgba(255, 0, 0, 0.8)', amarillo = 'rgba(255, 255, 0, 0.8)', verde = 'rgba(112, 173, 71, 0.8)', azul = 'rgba(0, 176, 240, 0.8)';
@@ -219,15 +357,15 @@ let ctx = n[i].getContext('2d');
 let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Autoevaluación', 'Jefe', 'Colega', 'Colaborador', 'RESULTADOS'],
+        labels: ['Autoevaluación - '+as[i].innerHTML, 'Jefe - '+bs[i].innerHTML, 'Colega - '+cs[i].innerHTML, 'Colaborador - '+ds[i].innerHTML, 'RESULTADOS - '+fs[i].innerHTML],
         datasets: [{
             data: [parseFloat(as[i].innerHTML), parseFloat(bs[i].innerHTML), parseFloat(cs[i].innerHTML), parseFloat(ds[i].innerHTML), parseFloat(fs[i].innerHTML), parseFloat(es[i].innerHTML)],
             backgroundColor: [
-                verC(as[0].innerHTML),
-                verC(bs[0].innerHTML),
-                verC(cs[0].innerHTML),
-                verC(ds[0].innerHTML),
-                verC(fs[0].innerHTML)
+                verC(as[i].innerHTML),
+                verC(bs[i].innerHTML),
+                verC(cs[i].innerHTML),
+                verC(ds[i].innerHTML),
+                verC(fs[i].innerHTML)
             ],
 			barThickness: 80
         }]
@@ -261,6 +399,28 @@ let myChart = new Chart(ctx, {
 	
 }
 
+	function verCH(valor){
+		if(valor>=90.01) return "sqr-blue";
+		if(valor>=70.01) return "sqr-green";
+		if(valor>=60.01) return "sqr-yellow";
+		return "sqr-red";
+	}
+	
+	function addLast(arr){
+		const p = document.querySelectorAll(".tabt div");
+		for (let i = 0; i < p.length; i++) {
+			p[i].innerText=arr[i].toFixed(2);
+		}
+		const s = document.querySelectorAll(".sqroc");
+		s[0].classList.add(verCH(arr[11]))
+		s[0].querySelector(".inner").innerText=arr[11].toFixed(2)+"%";
+		for (let i = 1; i < s.length; i++) {
+			s[i].classList.add(verCH(arr[i-1]))
+			s[i].querySelector(".inner").innerText=arr[i-1].toFixed(2)+"%";
+		}
+	}
+	
+	
 </script>
 
 	</body>
