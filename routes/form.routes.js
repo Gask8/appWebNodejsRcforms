@@ -36,7 +36,7 @@ module.exports = app => {
 				{
 					$set: {
 						"evaluadores.$.respuestas": req.body.arr[i],
-						"evaluadores.$.comentarios": req.body.brr[i],
+						// "evaluadores.$.comentarios": req.body.brr[i],
 						"evaluadores.$.contesto": true
 					 }
 				}
