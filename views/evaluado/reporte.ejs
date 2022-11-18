@@ -84,7 +84,7 @@
 			font-size: 1.2em !important;
 		}
 		#myTable .td2, .td1{
-			height: 100px !important;
+			height: 140px !important;
 		}
 		.td2{
 			background-color: #EEEEEE !important;
@@ -348,9 +348,9 @@ let ctx = n[i].getContext('2d');
 let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Autoevaluación - '+as[i].innerHTML, 'Colega - '+cs[i].innerHTML, 'RESULTADOS - '+fs[i].innerHTML],
+        labels: ['Autoevaluación - '+as[i].innerHTML, 'RESULTADOS - '+cs[i].innerHTML, 'Total - '+es[i].innerHTML],
         datasets: [{
-            data: [parseFloat(as[i].innerHTML), parseFloat(cs[i].innerHTML), parseFloat(fs[i].innerHTML), parseFloat(es[i].innerHTML)],
+            data: [parseFloat(as[i].innerHTML), parseFloat(cs[i].innerHTML), parseFloat(es[i].innerHTML), parseFloat(es[i].innerHTML)],
             backgroundColor: [
                 verC(as[i].innerHTML),
                 verC(cs[i].innerHTML),
