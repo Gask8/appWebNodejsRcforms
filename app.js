@@ -11,7 +11,7 @@ const MongoStore = require('connect-mongo');
 
 // // session
 const store = MongoStore.create({
-	mongoUrl: "mongodb+srv://gadmin:gz695VWqzWeSnSxr@cluster0.d74y6.mongodb.net/evaluaciones?retryWrites=true&w=majority",
+	mongoUrl: process.env.MONGOURL,
 	secret: 'secretkey',
 	touchAfter: 24*60*60
 })
