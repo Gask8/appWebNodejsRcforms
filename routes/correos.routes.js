@@ -15,8 +15,8 @@ module.exports = app => {
 		   ciphers:'SSLv3'
 		},
 		auth: {
-			user: 'aariza@lcred.org',
-			pass: 'Tskfyu48'
+			user: process.env.ANAMAIL,
+			pass: process.env.ANAPASSW
 		}
 	});
 	
