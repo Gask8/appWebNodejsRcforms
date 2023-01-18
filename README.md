@@ -11,7 +11,7 @@ App:
 - Bootstrap
 
 Server:
-- AWS / Amazon EC2 Linux instances
+- Heroku
 - Nodejs / Express
 - Mongodb Atlas
 
