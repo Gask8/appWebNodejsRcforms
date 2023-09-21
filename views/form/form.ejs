@@ -1,101 +1,106 @@
 <%- include('../partials/headless')%>
 
-	<body>
-		<div class="container" id="crform" style="margin: 50px auto; background: #ffffff">
-			<% if(del && del.length) {%>
-			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
-			<%}%>
+<body>
+  <div class="container" id="crform" style="margin: 50px auto; background: #ffffff">
+    <% if(del && del.length) {%>
+    <div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+    <%}%>
 			<% if(succes && succes.length) {%>
-			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
-			<%}%>
+    <div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+    <%}%>
 
 			<div class="activesld nonact">
 			<center><img id="mob-img" alt="RClogo" loading="lazy" class="form-image" style="border:0" src="/images/RC_Color_Horizontal.png" height="135px" width="618px"></center>
 			<hr>
 			<h2 class="text-center">Evaluación 360º para <%=quest.name%></h2>
-			<div class="text-center">¡Venga tu Reino!</div>
-			<hr>
-			<hr>
-			<div>Estimado en Cristo, <%= data.nombre %>:</div><hr>
-			<div>Ha sido elegido por su Director(a) para contestar la evaluación 360º que se está realizando desde la Oficina Territorial de Apostolado. En esta evaluación, usted podrá evaluar las habilidades que ha observado con base en el desempeño de su director(a).</div><hr>
-			<div>La fecha límite para contestar esta evaluación es el <b>10 de Mayo</b> del presente año.</div><hr>
-			<div>Si tiene alguna duda puede comunicarse con Ana Paula Ariza (aariza@arcol.org) o con Gabriel Salandra (gasalandra@lcred.org). Su participación es muy importante para el crecimiento de su localidad, muchas gracias y Dios l@ bendiga.</div><hr>
-			<hr>
-			</div>
+    <div class="text-center">¡Venga tu Reino!</div>
+    <hr>
+    <hr>
+    <div>Estimado en Cristo, <%= data.nombre %>:</div>
+    <hr>
+    <%- quest.mensaje %>
+  </div>
 
 
-			<form action="/form/<%= data._id %>" method="post">
-			<div class="nonact">
-				<hr>
-				<center><h3>Información Inicial, por favor llene todos los campos:</h3></center>
-				<hr><hr><center style="margin: 30px 0">
-				<label for="fname">Escribe aquí quien llena el formulario<span class="form-required">*</span></label>
-				<label for="fname" style="min-height:13px">Nombre:</label>
-				<input type="text" id="fname" name="fname" size="30" value="" required>
-				</center>
-				<hr><hr>
-			<center style="margin: 30px 0"><label for="input_1">¿A qué localidad perteneces?<span>*</span></label>
-		  	<select id="input_1" name="localidad" style="width:150px" required>
-				<option value="">  </option>
-				<option value="Acapulco"> Acapulco </option>
-				<option value="Campeche"> Campeche </option>
-				<option value="Cancún"> Cancún </option>
-				<option value="CDMX Norte"> CDMX Norte </option>
-				<option value="CDMX Poniente"> CDMX Poniente </option>
-				<option value="CDMX Sur"> CDMX Sur </option>
-				<option value="Chetumal"> Chetumal </option>
-				<option value="Costa Rica"> Costa Rica </option>
-				<option value="Cotija"> Cotija </option>
-				<option value="Cuernavaca"> Cuernavaca </option>
-				<option value="El Salvador   "> El Salvador </option>
-				<option value="Guatemala"> Guatemala </option>
-				<option value="Lindavista"> Lindavista </option>
-				<option value="Mérida"> Mérida </option>
-				<option value="Morelia"> Morelia </option>
-				<option value="Oaxaca"> Oaxaca </option>
-				<option value="Pachuca"> Pachuca </option>
-				<option value="Prelatura Cozumel"> Prelatura Cozumel </option>
-				<option value="Prelatura Playa del Carmen"> Prelatura Playa del Carmen </option>
-				<option value="Puebla"> Puebla </option>
-				<option value="Querétaro"> Querétaro </option>
-				<option value="Tapachula "> Tapachula </option>
-				<option value="Toluca "> Toluca </option>
-				<option value="Tuxtla "> Tuxtla </option>
-				<option value="Veracruz"> Veracruz </option>
-				<option value="Xalapa"> Xalapa </option>
-				<option value="Córdoba"> Córdoba </option>
-				<option value="Orizaba"> Orizaba </option>
-				<option value="Villahermosa"> Villahermosa </option>
-		  	</select>
-			<label for="input_2">¿A qué sección perteneces?<span >*</span></label>
-          	<select id="input_2" name="seccion" style="width:150px" required>
-				<option value="">  </option>
-				<option value="ECYD femenino "> ECYD femenino </option>
-				<option value="ECYD masculino "> ECYD masculino </option>
-				<option value="RC jóvenes femenino "> RC jóvenes femenino </option>
-				<option value="RC jóvenes masculino"> RC jóvenes masculino </option>
-				<option value="RC adultos femenino "> RC adultos femenino </option>
-				<option value="RC adultos masculino "> RC adultos masculino </option>
-				<option value="No aplica"> No aplica </option>
-          	</select>
-			</center>
-			<hr><hr>
-			</div>
+  <form action="/form/<%= data._id %>" method="post">
+    <div class="nonact">
+      <hr>
+      <center>
+        <h3>Información Inicial, por favor llene todos los campos:</h3>
+      </center>
+      <hr>
+      <hr>
+      <center style="margin: 30px 0">
+        <label for="fname">Escribe aquí quien llena el formulario<span class="form-required">*</span></label>
+        <label for="fname" style="min-height:13px">Nombre:</label>
+        <input type="text" id="fname" name="fname" size="30" value="" required>
+      </center>
+      <hr>
+      <hr>
+      <center style="margin: 30px 0"><label for="input_1">¿A qué localidad perteneces?<span>*</span></label>
+        <select id="input_1" name="localidad" style="width:150px" required>
+          <option value=""> </option>
+          <option value="Acapulco"> Acapulco </option>
+          <option value="Campeche"> Campeche </option>
+          <option value="Cancún"> Cancún </option>
+          <option value="CDMX Norte"> CDMX Norte </option>
+          <option value="CDMX Poniente"> CDMX Poniente </option>
+          <option value="CDMX Sur"> CDMX Sur </option>
+          <option value="Chetumal"> Chetumal </option>
+          <option value="Costa Rica"> Costa Rica </option>
+          <option value="Cotija"> Cotija </option>
+          <option value="Cuernavaca"> Cuernavaca </option>
+          <option value="El Salvador   "> El Salvador </option>
+          <option value="Guatemala"> Guatemala </option>
+          <option value="Lindavista"> Lindavista </option>
+          <option value="Mérida"> Mérida </option>
+          <option value="Morelia"> Morelia </option>
+          <option value="Oaxaca"> Oaxaca </option>
+          <option value="Pachuca"> Pachuca </option>
+          <option value="Prelatura Cozumel"> Prelatura Cozumel </option>
+          <option value="Prelatura Playa del Carmen"> Prelatura Playa del Carmen </option>
+          <option value="Puebla"> Puebla </option>
+          <option value="Querétaro"> Querétaro </option>
+          <option value="Tapachula "> Tapachula </option>
+          <option value="Toluca "> Toluca </option>
+          <option value="Tuxtla "> Tuxtla </option>
+          <option value="Veracruz"> Veracruz </option>
+          <option value="Xalapa"> Xalapa </option>
+          <option value="Córdoba"> Córdoba </option>
+          <option value="Orizaba"> Orizaba </option>
+          <option value="Villahermosa"> Villahermosa </option>
+        </select>
+        <label for="input_2">¿A qué sección perteneces?<span>*</span></label>
+        <select id="input_2" name="seccion" style="width:150px" required>
+          <option value=""> </option>
+          <option value="ECYD femenino "> ECYD femenino </option>
+          <option value="ECYD masculino "> ECYD masculino </option>
+          <option value="RC jóvenes femenino "> RC jóvenes femenino </option>
+          <option value="RC jóvenes masculino"> RC jóvenes masculino </option>
+          <option value="RC adultos femenino "> RC adultos femenino </option>
+          <option value="RC adultos masculino "> RC adultos masculino </option>
+          <option value="No aplica"> No aplica </option>
+        </select>
+      </center>
+      <hr>
+      <hr>
+    </div>
 
-		  <!-- Comienza el Juego-->
-		<%for (let j = 0; j < quest.preg.length; j++) {%>
-			<% if(j%25==0) {%><div class="nonact"> <% } %>
-        <label class="label-preg"> <%= quest.preg[j] %></label>
-		  <div style="overflow-x:auto;">
-          <table cellpadding="4" cellspacing="0" >
-            <tbody><tr>
+    <!-- Comienza el Juego-->
+    <%for (let j = 0; j < quest.preg.length; j++) {%>
+    <% if(j%25==0) {%><div class="nonact"> <% } %>
+      <label class="label-preg"> <%= quest.preg[j] %></label>
+      <div style="overflow-x:auto;">
+        <table cellpadding="4" cellspacing="0">
+          <tbody>
+            <tr>
 
               <th style="border:none">&nbsp;</th>
-				<%for (let element of quest.label) {%>
-					<th class="form-th">
-						<label> <%= element %> </label>
-					</th>
-				<%}%>
+              <%for (let element of quest.label) {%>
+              <th class="form-th">
+                <label> <%= element %> </label>
+              </th>
+              <%}%>
 
             </tr>
 			<%for (let i = 0; i < data.evaluando.length; i++) {%>
@@ -104,26 +109,29 @@
                 <label> <%= data.evaluando[i].nombre %></label>
               </th>
 
-				<%for (let element of quest.val) {%>
-					<td class="form-value">
-						<input type="radio" class="form-radio" name="arr[<%=i%>][<%=j%>]" value="<%= element %>" required>
-				  	</td>
-				<%}%>
+              <%for (let element of quest.val) {%>
+              <td class="form-value">
+                <input type="radio" class="form-radio" name="arr[<%=i%>][<%=j%>]" value="<%= element %>" required>
+              </td>
+              <%}%>
 
             </tr>
 				<%}%>
-			  </tbody></table></div>
-			<hr class="hr-big">
-				<% if(j%25==24) {%></div> <% } %>
-			<%}%>
+          </tbody>
+        </table>
+      </div>
+      <hr class="hr-big">
+      <% if(j%25==24) {%>
+    </div> <% } %>
+    <%}%>
 				</div>
 
 			<div class="nonact">
 				<div class="form-col" style="width: 100%;">
 					<%for (let i = 0; i < data.evaluando.length; i++) {%>
-						<label>Comentarios para <%= data.evaluando[i].nombre %>:</label>
-						<textarea name="brr[<%=i%>]" rows="5" cols="50" style="padding: 15px;background: #F5F5F5;color: black;margin-bottom: 25px;"></textarea>
-					<%}%>
+    <label>Comentarios para <%= data.evaluando[i].nombre %>:</label>
+    <textarea name="brr[<%=i%>]" rows="5" cols="50" style="padding: 15px;background: #F5F5F5;color: black;margin-bottom: 25px;"></textarea>
+    <%}%>
 				</div>
 			</div>
 
@@ -182,10 +190,17 @@
 <script>
 	var indexC = 0;
 	var x = document.querySelectorAll(".nonact");
+	var allTables = document.querySelectorAll(".nonact table")
+	var radioEvent = document.querySelectorAll("input")
 	var atr = document.querySelector("#atr");
 	var adl = document.querySelector("#adl");
 	var falt = 0;
-
+	restoreForm();
+	
+	radioEvent.forEach(function(radio){
+		radio.addEventListener("click", saveForm)
+	})
+	
 	function atras(){
 		atr.style.display="block";
 		adl.style.display="block";
@@ -224,7 +239,6 @@
 		x[indexC].classList.add("activesld");
 		scrollUp(0);
 	}
-
 	function checkinputs(){
 		if(x[indexC].querySelector("input").value=='') return false;
 		if(x[indexC].querySelectorAll("select")[0].value=='') return false;
@@ -253,6 +267,30 @@
   		left: 0,
   		behavior: 'smooth'
 		});
+	}
+	function saveForm(){
+		var save = []
+		for(let i=0;i<allTables.length;i++){
+			var radio = allTables[i].querySelector("input[type=radio]:checked")
+			if (radio!==null) save.push(radio.value)
+		}
+		//console.log(save)
+		localStorage.setItem('save', save.toString());
+		localStorage.setItem('saveN', document.querySelector("#fname").value);
+	}
+	function restoreForm(){
+		var restore = localStorage.getItem('save');
+		if (restore!==null){
+			var restoreArray = restore.split(",")
+			for(let i=0;i<restoreArray.length;i++){
+				var radio = allTables[i].querySelector("input[type=radio][value='"+restoreArray[i]+"']")
+				if (radio!==null) radio.checked = true
+			}
+		}
+		var restoreN = localStorage.getItem('saveN');
+		if (restoreN!==null){
+			document.querySelector("#fname").value = restoreN;
+		}
 	}
 </script>
 <%- include('../partials/footer')%>

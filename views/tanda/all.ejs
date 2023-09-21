@@ -1,12 +1,12 @@
 <%- include('../partials/head')%>
 
-		<div class="container" id="crform">
-			<% if(del && del.length) {%>
-			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
-			<%}%>
+<div class="container" id="crform">
+  <% if(del && del.length) {%>
+  <div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+  <%}%>
 			<% if(succes && succes.length) {%>
-			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
-			<%}%>
+  <div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+  <%}%>
 	
 		  <a href="/tandas/new" class="btn btn-primary">Agregar Tanda</a>
 		  <h2>Tandas</h2>
@@ -26,14 +26,14 @@
 			</thead>
 			<tbody id="myTable">
 				<%for (let element of data) {%>
-					<tr>
-						<td><%= element.idt %></td>
-						<td><%= element.name %></td>
-						<td><a href="/tandas/<%= element.idt %>" class="btn btn-primary">Menu</a></td>
-						<!-- <td><a href="/tandas/edit/<%= element._id %>" class="btn btn-info">Ver Info</a></td> -->
-						<!-- <td><form style="align-items: flex-end;" id="delif" method="POST" action="/tandas/<%= element.idt %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');"><button class="btn btn-danger" style="margin-bottom: 0 !important;">Borrar</button></form></td> -->
-					</tr>
-				<%}%>
+  <tr>
+    <td><%= element.idt %></td>
+    <td><%= element.name %></td>
+    <td><a href="/tandas/<%= element.idt %>" class="btn btn-primary">Menu</a></td>
+    <!-- <td><a href="/tandas/edit/<%= element._id %>" class="btn btn-info">Ver Info</a></td> -->
+    <!-- <td><form style="align-items: flex-end;" id="delif" method="POST" action="/tandas/<%= element.idt %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');"><button class="btn btn-danger" style="margin-bottom: 0 !important;">Borrar</button></form></td> -->
+  </tr>
+  <%}%>
 			</tbody>
 		  </table>
 			
@@ -42,4 +42,4 @@
 
 		<script src="/js/general.js"></script>
 	</body>
-<%- include('../partials/footer')%>	
+<%- include('../partials/footer')%>

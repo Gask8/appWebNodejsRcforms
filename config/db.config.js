@@ -6,5 +6,5 @@ module.exports = {
 
   //Mongo
   LINK: "mongodb://localhost:27017/evaluaciones",
-  LINKM: process.env.MONGOURL
+  LINKM: process.env.MONGOURL,
 };

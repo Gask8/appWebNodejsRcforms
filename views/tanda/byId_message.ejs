@@ -1,16 +1,16 @@
 <%- include('../partials/head')%>
-		<!-- include summernote css/js -->
-		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 
-		<div class="container" id="crform">
-			<% if(del && del.length) {%>
-			<div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
-			<%}%>
+<div class="container" id="crform">
+  <% if(del && del.length) {%>
+  <div class="alert alert-danger" role="alert" style="text-align: center; margin-top: 10px;"><%=del%></div>
+  <%}%>
 			<% if(succes && succes.length) {%>
-			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
-			<%}%>
+  <div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+  <%}%>
 			 
 			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/tandas">Regresar</a>
 			<h1>Mensaje de la tanda</h1>
@@ -18,38 +18,40 @@
 			<div>
 	
 			<form action="/tandas/message/<%= data._id %>?_method=PUT" method="post">
-				
-			<center><div class="form-col">
-			<label for="name">Sujeto del Correo:</label>
-			<input id="name" name="name" type="TEXT" value="<%= data.messageS %>"/>
-			</div></center>
-				
-			<label for="message">Codigos: |nombre| |link| |evaluadores|</label>
-			
-			<textarea id="message" name="editordata"><%= data.message %></textarea>
-				
-			<button class="btn btn-primary btn-lg">Enviar</button>
-			</form>
-	
-	<script>
-		$(document).ready(function() {
-			$('#message').summernote({
-				 toolbar: [
-				 ['style', ['bold', 'italic', 'underline', 'clear']],
-				 ['font', ['strikethrough', 'superscript', 'subscript']],
-				 ['fontsize', ['fontsize']],
-				 // ['color', ['color']],
-				 ['para', ['ul', 'ol', 'paragraph']],
-				 ['table', ['table']],
-				 ['insert', ['link', 'picture']],
- 				 ['view', ['fullscreen', 'codeview']]
-				  ]
-			});
-		});
-	</script>
-	
-		</div>
-       </div>
 
-	</body>
-<%- include('../partials/footer')%>	
+  <center>
+    <div class="form-col">
+      <label for="name">Sujeto del Correo:</label>
+      <input id="name" name="name" type="TEXT" value="<%= data.messageS %>" />
+    </div>
+  </center>
+
+  <label for="message">Codigos: |nombre| |link| |evaluadores|</label>
+
+  <textarea id="message" name="editordata"><%= data.message %></textarea>
+
+  <button class="btn btn-primary btn-lg">Enviar</button>
+  </form>
+
+  <script>
+    $(document).ready(function() {
+      $('#message').summernote({
+        toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+          ['font', ['strikethrough', 'superscript', 'subscript']],
+          ['fontsize', ['fontsize']],
+          // ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture']],
+          ['view', ['fullscreen', 'codeview']]
+        ]
+      });
+    });
+  </script>
+
+</div>
+</div>
+
+</body>
+<%- include('../partials/footer')%>

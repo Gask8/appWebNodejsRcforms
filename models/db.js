@@ -1,5 +1,5 @@
 // const mysql = require("mysql");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const dbConfig = require("../config/db.config.js");
 
 // Create a connection to the database
@@ -15,13 +15,14 @@ const dbConfig = require("../config/db.config.js");
 //   console.log("Successfully connected to the database.");
 // });
 
-const connection = mongoose.connect(dbConfig.LINKM)
-	.then(()=>{
-	console.log("Successfully connected to the database.");
-})
-	.catch(()=>{
-	console.log("ERROR EN DB");
-	console.log(err);
-});
+const connection = mongoose
+  .connect(dbConfig.LINKM)
+  .then(() => {
+    console.log("Successfully connected to the database.");
+  })
+  .catch(() => {
+    console.log("ERROR EN DB");
+    console.log(err);
+  });
 
 module.exports = connection;

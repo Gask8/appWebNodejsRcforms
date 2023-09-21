@@ -1,77 +1,77 @@
 <%- include('../partials/head')%>
-	
-		<div class="container" id="crform">
-			<% if(succes && succes.length) {%>
-			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
-			<%}%>
+
+<div class="container" id="crform">
+  <% if(succes && succes.length) {%>
+  <div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+  <%}%>
 			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluadores/<%= idt %>">Regresar</a>
-		<h1>Evaluador: <%= data.nombre %></h1>
-		 
-		<table id="tabif" class="table table-bordered table-striped">
-			<thead>
-			  <tr>
-				<th>Nombre</th>
-				<th>Correo</th>
-				<th>Localidad</th>
-				<th>Seccion</th>
-				<th>Quien?</th>
-			</tr>
-			</thead>
-			  <h3>Informacion Basica:</h3>
-				<tbody id="myTable">
-				<tr>
-					<td><%= data.nombre %></td>
-					<td><%= data.correo %></td>
-					<td><%= data.localidad %></td>
-					<td><%= data.seccion %></td>
-					<td><%= data.quienlleno %></td>	
-				</tr>
-			</tbody>
-		  </table>
-			
-		  <%let idx=0;%>
-		  <h2>Evaluados</h2>
-			<p>Fecha de respuesta: <%=data.lastdate.toLocaleString('es-MX', { timeZone: 'America/Mexico_City'})%></p>
-          <table class="table">
-            <tbody>
-				<tr>
-              <th style="border:none">&nbsp;</th>
-				<%for (let element of data.evaluando) {%>
-					<th class="form-th">
-						<label> <%= element.nombre %> </label>
-					</th>
-				<%}%>
+  <h1>Evaluador: <%= data.nombre %></h1>
+
+  <table id="tabif" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Localidad</th>
+        <th>Seccion</th>
+        <th>Quien?</th>
+      </tr>
+    </thead>
+    <h3>Informacion Basica:</h3>
+    <tbody id="myTable">
+      <tr>
+        <td><%= data.nombre %></td>
+        <td><%= data.correo %></td>
+        <td><%= data.localidad %></td>
+        <td><%= data.seccion %></td>
+        <td><%= data.quienlleno %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%let idx=0;%>
+  <h2>Evaluados</h2>
+  <p>Fecha de respuesta: <%=data.lastdate.toLocaleString('es-MX', { timeZone: 'America/Mexico_City'})%></p>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th style="border:none">&nbsp;</th>
+        <%for (let element of data.evaluando) {%>
+        <th class="form-th">
+          <label> <%= element.nombre %> </label>
+        </th>
+        <%}%>
             </tr>
 			<%for (let i = 0; i < quest.preg.length; i++) {%>
-			<%if(i === quest.cati[idx]) {%>
-				<tr>
-				  <th colspan="<%=data.evaluando.length+1%>" class="thheader form-th"><%= quest.categoria[idx]%></th>
-				</tr>
-			<%idx++;}%>
-            <tr>
-              <th class="form-th">
-                <label> <%= quest.preg[i] %></label>
-              </th>
-				<%for (let j = 0; j < data.evaluando.length; j++) {%>
-					<td class="form-value">
-						<% if(data.evaluando[j].respuestas[i]==null || data.evaluando[j].respuestas[i]==0) {%><p>N/A</p><%}else{%><p><%= data.evaluando[j].respuestas[i] %></p><%}%>
+        <%if(i === quest.cati[idx]) {%>
+      <tr>
+        <th colspan="<%=data.evaluando.length+1%>" class="thheader form-th"><%= quest.categoria[idx]%></th>
+      </tr>
+      <%idx++;}%>
+      <tr>
+        <th class="form-th">
+          <label> <%= quest.preg[i] %></label>
+        </th>
+        <%for (let j = 0; j < data.evaluando.length; j++) {%>
+        <td class="form-value">
+          <% if(data.evaluando[j].respuestas[i]==null || data.evaluando[j].respuestas[i]==0) {%><p>N/A</p><%}else{%><p><%= data.evaluando[j].respuestas[i] %></p><%}%>
 				  	</td>
 				<%}%>
-            </tr>
-				<%}%>
+      </tr>
+      <%}%>
           </tbody></table>
 			
 		<!-- <form style="align-items: flex-end;" id="delif" method="POST" action="/evaluadores/<%= idt %>/<%=data._id%>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
-			<button class="btn btn-danger">Borrar</button>
-		</form> -->
-			<div style="background:white; padding: 25px">
-				<hr>
-				<%for (let j = 0; j < data.evaluando.length; j++) {%>
-				<p><b>Comentarios para: <%=data.evaluando[j].nombre%></b></p>
-				<p><%=data.evaluando[j].comentarios%></p>
-				<hr>
-			</div>
-			<%}%>
+      <button class="btn btn-danger">Borrar</button>
+      </form> -->
+      <div style="background:white; padding: 25px">
+        <hr>
+        <%for (let j = 0; j < data.evaluando.length; j++) {%>
+        <p><b>Comentarios para: <%=data.evaluando[j].nombre%></b></p>
+        <p><%=data.evaluando[j].comentarios%></p>
+        <hr>
+      </div>
+      <%}%>
 		</div>
 	</body>
-<%- include('../partials/footer')%>	
+<%- include('../partials/footer')%>

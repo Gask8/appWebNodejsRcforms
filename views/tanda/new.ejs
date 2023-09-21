@@ -1,41 +1,52 @@
 <%- include('../partials/head')%>
-	
-       <div class="container" id="crform">
-			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/tandas">Regresar</a>
-			<h1>Agregar Tanda</h1>
-			<div id="nuevo">
-				<form action="/tandas" method="post">
-				<center><div class="form-col">
-				<label for="name">Nombre de la Tanda:</label>
-				<input id="name" name="name" type="TEXT"/>
-					</div></center>
-				<center><div class="form-col">
-				<label for="idt">ID de la tanda:</label>
-				<input id="idt" name="idt" type="number"/>
-				</div></center>
-					
-				<div class="form-row">
-				<div class="form-col" style="width: 98%;">
-					<label for="preg">Preguntas:</label>
-					<textarea id="preg" name="preg" rows="10" cols="50"></textarea>
-					<label for="label">Opciones:</label>
-					<textarea id="label" name="label" rows="7" cols="50">No lo he observado
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+<div class="container" id="crform">
+  <a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/tandas">Regresar</a>
+  <h1>Agregar Tanda</h1>
+  <div id="nuevo">
+    <form action="/tandas" method="post">
+      <center>
+        <div class="form-col">
+          <label for="name">Nombre de la Tanda:</label>
+          <input id="name" name="name" type="TEXT" />
+        </div>
+      </center>
+      <center>
+        <div class="form-col">
+          <label for="idt">ID de la tanda:</label>
+          <input id="idt" name="idt" type="number" />
+        </div>
+      </center>
+
+      <div class="form-row">
+        <div class="form-col" style="width: 98%;">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje"><div>Ha sido elegido por su Director(a) para contestar la evaluación 360º que se está realizando desde la Oficina Territorial de Apostolado. En esta evaluación, usted podrá evaluar las habilidades que ha observado con base en el desempeño de su director(a).</div><hr>
+						<div>La fecha límite para contestar esta evaluación es el <b>10 de Mayo</b> del presente año.</div><hr>
+						<div>Si tiene alguna duda puede comunicarse con Ana Paula Ariza (aariza@arcol.org) o con Gabriel Salandra (gasalandra@lcred.org). Su participación es muy importante para el crecimiento de su localidad, muchas gracias y Dios l@ bendiga.</div><hr>
+						<hr></textarea>
+          <label for="preg">Preguntas:</label>
+          <textarea id="preg" name="preg" rows="10"></textarea>
+          <label for="label">Opciones:</label>
+          <textarea id="label" name="label" rows="7">No lo he observado
 Totalmente en desacuerdo
 En desacuerdo
 Medianamente en desacuerdo
 Medianamente de acuerdo
 De acuerdo
 Totalmente de acuerdo</textarea>
-					<label for="val">Valores:</label>
-					<textarea id="val" name="val" rows="7" cols="50"> 
+          <label for="val">Valores:</label>
+          <textarea id="val" name="val" rows="7">
 16.67
 33.33
 50
 66.67
 83.33
 100</textarea>
-					<label for="cat">Categoria:</label>
-					<textarea id="cat" name="cat" rows="6" cols="50">Comprensión
+          <label for="cat">Categoria:</label>
+          <textarea id="cat" name="cat" rows="6">Comprensión
 Comunicación
 Desarrollo, Atención y Formación de otros
 Formación
@@ -46,8 +57,8 @@ Planeación y Organización
 Sentido emprendedor
 Solución de problemas y Toma de decisiones
 Trabajo en Equipo </textarea>
-					<label for="cati">Indices:</label>
-					<textarea id="cati" name="cati" rows="6" cols="50">0
+          <label for="cati">Indices:</label>
+          <textarea id="cati" name="cati" rows="6">0
 6
 12
 18
@@ -58,12 +69,28 @@ Trabajo en Equipo </textarea>
 52
 60
 68</textarea>
-				</div>
-				</div>		
-                <button>Enviar</button>
-         </form>
-		</div>
-       </div>
+        </div>
+      </div>
+      <button>Enviar</button>
+    </form>
+  </div>
+</div>
 
-	</body>
-<%- include('../partials/footer')%>	
+<script>
+  $(document).ready(function() {
+    $('#mensaje').summernote({
+      toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        // ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture']],
+        ['view', ['fullscreen', 'codeview']]
+      ]
+    });
+  });
+</script>
+</body>
+<%- include('../partials/footer')%>

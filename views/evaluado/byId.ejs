@@ -1,69 +1,69 @@
 <%- include('../partials/head')%>
-	
-		<div class="container" id="crform">
-			<% if(succes && succes.length) {%>
-			<div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
-			<%}%>
+
+<div class="container" id="crform">
+  <% if(succes && succes.length) {%>
+  <div class="alert alert-success" role="alert" style="text-align: center; margin-top: 10px;"><%=succes%></div>
+  <%}%>
 			<a class="btn" style="background: #72d2ff; margin: 25px 0;" href="/evaluados/<%= idt %>">Regresar</a>
-		<h1>Evaluado: <%= data.nombre%></h1>
-			
-			<!-- <button id="butif" class="btn btn-primary">Modificar</button>
+  <h1>Evaluado: <%= data.nombre%></h1>
+
+  <!-- <button id="butif" class="btn btn-primary">Modificar</button>
 		  <br> -->
-		 
-			
-			<table id="tabif" class="table table-bordered table-striped">
-			<thead>
-			  <tr>
-				<th>ID</th>
-				<th>Nombre</th>
-				<th>Posicion</th>
-				<th>Correo</th>
-			</tr>
-			</thead>
-			  <h3>Informacion Basica:</h3>
-				<tbody id="myTable2">
-				<tr>
-					<td><%= data._id %></td>
-					<td><%= data.nombre %></td>
-					<td><%= data.posicion %></td>
-					<td><%= data.correo %></td>	
-				</tr>
-			</tbody>
-		  </table>
-			
-		  <table id="tabif" class="table table-bordered table-striped">
-			<thead>
-			  <tr>
-				  <th>Nombre</th>
-				  <th>Posicion</th>
-				  <th>Categoria</th>
-				  <th>Correo</th>
-				  <th>Contesto?</th>
-				   </tr>
-			</thead>
-			
-		  <h2>Evaluadores</h2>
-		  <p>Buscar por ID o mas cosas:</p>  
-		  <input class="form-control" id="myInput" type="text" placeholder="Search..">
-		  <br>
-			<tbody id="myTable">
-					<%for (let element of data.evaluadores) {%>
-					<tr>
-						<td><%= element.nombre %></td>
-						<td><%= element.posicion %></td>
-						<td><%= element.categoria %></td>
-						<td><%= element.correo %></td>
-						<td class="text-center"><%if(element.contesto){%>Si <span style="color:#2ac32a;" class="glyphicon glyphicon-ok"></span><% } else { %>No <span style="color:#ff6161;" class="glyphicon glyphicon-remove"></span><%}%></td>
+
+
+  <table id="tabif" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Posicion</th>
+        <th>Correo</th>
+      </tr>
+    </thead>
+    <h3>Informacion Basica:</h3>
+    <tbody id="myTable2">
+      <tr>
+        <td><%= data._id %></td>
+        <td><%= data.nombre %></td>
+        <td><%= data.posicion %></td>
+        <td><%= data.correo %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table id="tabif" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Posicion</th>
+        <th>Categoria</th>
+        <th>Correo</th>
+        <th>Contesto?</th>
+      </tr>
+    </thead>
+
+    <h2>Evaluadores</h2>
+    <p>Buscar por ID o mas cosas:</p>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <tbody id="myTable">
+      <%for (let element of data.evaluadores) {%>
+      <tr>
+        <td><%= element.nombre %></td>
+        <td><%= element.posicion %></td>
+        <td><%= element.categoria %></td>
+        <td><%= element.correo %></td>
+        <td class="text-center"><%if(element.contesto){%>Si <span style="color:#2ac32a;" class="glyphicon glyphicon-ok"></span><% } else { %>No <span style="color:#ff6161;" class="glyphicon glyphicon-remove"></span><%}%></td>
 					</tr>
 					<%}%>
-			</tbody>
-		  </table>
-		
-		<a href="/evaluados/<%= idt %>/calcular/<%= data._id %>" class="btn btn-info btn-lg" style="width:100%">Calcular</a>
-			
-		<form style="align-items: flex-end; margin-top:45px" id="delif" method="POST" action="/evaluados/<%= idt+"/"+data._id %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
-			<button class="btn btn-danger">Borrar</button>
-		</form>
-		<script src="/js/general.js"></script>
-	</body>
-<%- include('../partials/footer')%>	
+    </tbody>
+  </table>
+
+  <a href="/evaluados/<%= idt %>/calcular/<%= data._id %>" class="btn btn-info btn-lg" style="width:100%">Calcular</a>
+
+  <form style="align-items: flex-end; margin-top:45px" id="delif" method="POST" action="/evaluados/<%= idt+"/"+data._id %>?_method=DELETE" onsubmit="return confirm('En serio quieres borrar?');">
+    <button class="btn btn-danger">Borrar</button>
+  </form>
+  <script src="/js/general.js"></script>
+  </body>
+  <%- include('../partials/footer')%>

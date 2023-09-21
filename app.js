@@ -1,53 +1,56 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const router = express.Router();
-const path = require('path');
-const methodOverride = require('method-override');
+const path = require("path");
+const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
-const sessions = require('express-session');
-const flash = require('connect-flash');
+const sessions = require("express-session");
+const flash = require("connect-flash");
 const session = require("express-session");
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
 
 // // session
 const store = MongoStore.create({
-	mongoUrl: process.env.MONGOURL,
-	secret: process.env.secretkey,
-	touchAfter: 24*60*60
-})
+  mongoUrl: process.env.MONGOURL,
+  secret: process.env.secretkey,
+  touchAfter: 24 * 60 * 60,
+});
 const sessionConfig = {
-	store,
-	name: "session",
-	secret: process.env.secretkey,
-	resave: false,
-	saveUninitialized: false,
-	cookie: {
-		httpOnly: true,
-		expires: Date.now() + 1000 * 60 *60 * 24 * 7,
-		maxAge: 1000 * 60 *60 * 24 * 7
-	}
-}
+  store,
+  name: "session",
+  secret: process.env.secretkey,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
 //Especificaciones
-app.use(express.static('public'))
-app.set('view engine','ejs');
-app.set('views',path.join(__dirname,'/views'))
-app.use(methodOverride('_method'));
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
+app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(sessions(sessionConfig));
 app.use(flash());
 
-app.use((req,res,next)=>{
-	res.locals.wrong = req.flash('wrong');
-	res.locals.succes = req.flash('succes');
-	res.locals.del = req.flash('del');
-	next();
-})
+app.use((req, res, next) => {
+  res.locals.wrong = req.flash("wrong");
+  res.locals.succes = req.flash("succes");
+  res.locals.del = req.flash("del");
+  next();
+});
 // Paths
-app.get('/',(req,res)=>{var vsession = req.session;res.render('index', { vsession })})
+app.get("/", (req, res) => {
+  var vsession = req.session;
+  res.render("index", { vsession });
+});
 //add the router
-app.use('/', router);
+app.use("/", router);
 require("./routes/sign.routes.js")(app);
 require("./routes/evaluado.routes.js")(app);
 require("./routes/evaluadores.routes.js")(app);
@@ -56,7 +59,7 @@ require("./routes/correos.routes.js")(app);
 require("./routes/form.routes.js")(app);
 
 const port = process.env.PORT || 3000;
-app.listen(port, err => {
-    if(err) throw err;
-    console.log("%c Server running");
+app.listen(port, (err) => {
+  if (err) throw err;
+  console.log("%c Server running");
 });
