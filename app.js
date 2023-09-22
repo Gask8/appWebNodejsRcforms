@@ -8,6 +8,7 @@ const sessions = require("express-session");
 const flash = require("connect-flash");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+//require("dotenv").config();
 
 // // session
 const store = MongoStore.create({

@@ -9,11 +9,16 @@ module.exports = {
   },
   hasAnswered: async (req, res, next) => {
     const Evaluadore = require("../models/evaluadores.model.js");
-    const data = await Evaluadore.findOne({ _id: req.params.evaluadorId });
-    if (data.contesto) {
-      req.flash("wrong", "Ya ha contestato");
-      return res.redirect("/gracias");
+    try {
+      const data = await Evaluadore.findOne({ _id: req.params.evaluadorId });
+      if (data.contesto) {
+        req.flash("wrong", "Ya ha contestato");
+        return res.redirect("/gracias");
+      }
+      next();
+    } catch (err) {
+      console.log(err);
+      res.redirect("/error");
     }
-    next();
   },
 };

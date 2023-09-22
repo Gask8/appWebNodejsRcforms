@@ -10,10 +10,15 @@ module.exports = (app) => {
 
   // FORM with Id
   router.get("/form/:evaluadorId", mw.hasAnswered, async (req, res) => {
-    const data = await Evaluadore.findOne({ _id: req.params.evaluadorId });
-    const quest = await Pregunta.findOne({ idt: data.idt });
-    const vsession = req.session;
-    res.render("form/form", { data, quest, vsession });
+    try {
+      const data = await Evaluadore.findOne({ _id: req.params.evaluadorId });
+      const quest = await Pregunta.findOne({ idt: data.idt });
+      const vsession = req.session;
+      res.render("form/form", { data, quest, vsession });
+    } catch (err) {
+      console.log(err);
+      res.redirect("/error");
+    }
   });
 
   // POST FORM
@@ -64,5 +69,11 @@ module.exports = (app) => {
   router.get("/gracias", async (req, res) => {
     const vsession = req.session;
     res.render("form/gracias", { vsession });
+  });
+
+  //Error Get
+  router.get("/error", async (req, res) => {
+    const vsession = req.session;
+    res.render("form/error", { vsession });
   });
 };
