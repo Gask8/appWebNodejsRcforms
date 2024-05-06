@@ -8,7 +8,7 @@ const sessions = require("express-session");
 const flash = require("connect-flash");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-//require("dotenv").config();
+require("dotenv").config();
 
 // // session
 const store = MongoStore.create({
@@ -62,5 +62,5 @@ require("./routes/form.routes.js")(app);
 const port = process.env.PORT || 3000;
 app.listen(port, (err) => {
   if (err) throw err;
-  console.log("%c Server running");
+  console.log(`${port} Server running`);
 });
